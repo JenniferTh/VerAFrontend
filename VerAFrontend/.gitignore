@@ -13,9 +13,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
-.settings
-.classpath
-.metadata
+
 
 # Eclipse Core
 .project
