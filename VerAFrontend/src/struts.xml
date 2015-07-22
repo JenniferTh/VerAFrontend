@@ -5,8 +5,8 @@
 	
 <struts>
 	<package name = "default" extends = "struts-default">
-		<action name = "getUser" class = "">
-			
+		<action name = "UserLogin" class = "action.login">
+			<result name ="blah">/login.jsp</result>
 		</action>
 	</package>
 </struts>
