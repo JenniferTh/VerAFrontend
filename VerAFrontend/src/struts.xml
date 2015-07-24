@@ -6,7 +6,7 @@
 <struts>
 	<package name = "default" extends = "struts-default">
 		<action name = "login" class = "action.login">
-			<result name ="success">/WEB-INF/content/login.jsp</result>
+			<result name ="success">/login.jsp</result>
 		</action>
 	</package>
 </struts>
