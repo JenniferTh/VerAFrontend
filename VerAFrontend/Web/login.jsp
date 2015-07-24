@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- <form action="login" method = "post">
+	<form action="login" method = "post">
 		<table cellpadding = "4" cellspacing = "4" border = "1" align = "center">
 			<tr><td>Login:</td><td><input type="text" name = "login"/></td></tr>
 			<tr><td>Passwort:</td><td><input type="text" name = "password"/></td></tr>
 			<tr><td colspan ="2" align ="center"><input type ="submit" value = "login"> 
 		</table>
-	</form>-->
+	</form>
 </body>
 </html>
