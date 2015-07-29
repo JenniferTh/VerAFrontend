@@ -9,8 +9,13 @@ public class login {
 	
 	public String execute(){
 		userFinderService userFinder = new userFinderService();
-		System.out.println("Huhu");
-		return "success";
+		System.out.println(getUsername());
+		System.out.println(getPassword());
+		if(userFinder.loginSuccess(username, password)){
+			return "success";
+		}else {
+			return "error";
+		}
 	}
 
 	public String getUsername() {
