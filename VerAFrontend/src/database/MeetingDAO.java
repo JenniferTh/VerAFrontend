@@ -35,7 +35,7 @@ public class MeetingDAO {
         }
     }
 
-    public void createMeeting(String Thema, String Ort, int Abteilungsleiter_Mitgliedsnummer) {
+    public void createMeeting(String Thema, String Ort, int Abteilungsleiter_Mitgliedsnummer, int maxTeilnehmer, String Kategorie, Date datum, String info) {
         Date Datum = getCurrentDate();
         try {
 
