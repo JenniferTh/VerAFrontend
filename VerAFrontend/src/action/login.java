@@ -6,6 +6,7 @@ public class login {
 	private String username;
 	private int userID;
 	private String password;
+	private String infoMessage;
 	
 	public String execute(){
 		userFinderService userFinder = new userFinderService();
@@ -13,7 +14,8 @@ public class login {
 		System.out.println(getPassword());
 		if(userFinder.loginSuccess(username, password)){
 			return "success";
-		}else {
+		}else {		
+			setInfoMessage("Der login ist fehlgeschlagen");
 			return "error";
 		}
 	}
@@ -40,5 +42,13 @@ public class login {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getInfoMessage() {
+		return infoMessage;
+	}
+
+	public void setInfoMessage(String infoMessage) {
+		this.infoMessage = infoMessage;
 	}
 }
