@@ -15,7 +15,7 @@
 		</select> 
 	</form>
 	<form action="success.jsp" method="POST">
-		<input type="text" name="suchfeld">
+		<input type="text" name="term">
 		<input type="submit" name="suche_enter" value="Suche">
 	</form>
 <hr><br>	
