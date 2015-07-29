@@ -1,11 +1,12 @@
-package search.action;
+package action;
 
-public class SearchAction {
-	
+public class BeiErstellenAction {
+
 	public String execute(){
 		
 		System.out.println("Executed biatch!");
-		return "success";
+		return "bsuccess";
 		
 	}
+	
 }

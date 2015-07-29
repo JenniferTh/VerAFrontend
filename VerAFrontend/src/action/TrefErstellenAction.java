@@ -1,4 +1,4 @@
-package treferstellen.action;
+package action;
 
 public class TrefErstellenAction {
 

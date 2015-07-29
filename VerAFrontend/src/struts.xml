@@ -19,6 +19,11 @@
 			<result name="tsuccess">/tsuccess.jsp</result>
 		</action>
 		
+		<action name = "login" class = "action.login">
+			<result name ="success">/successLogin.jsp</result>
+			<result name ="error">/login.jsp</result>
+		</action>
+		
 	</package>
 	
 </struts>
