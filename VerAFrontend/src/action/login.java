@@ -13,7 +13,7 @@ public class login {
 		System.out.println(getPassword());
 		if(userFinder.loginSuccess(username, password)){
 			return "success";
-		}else if(this.infoMessage.equals("Bitte einloggen")){
+		}else if(this.infoMessage.equals("Bitte einloggen")&&username == null&&password == null){
 			return "login";
 		}else{		
 			setInfoMessage("Der login ist fehlgeschlagen");
