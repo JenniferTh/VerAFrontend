@@ -90,7 +90,6 @@ public class UserDAO {
 		String mail = null;
 		int status = 0;
 		//ResultSet lastArticles = null;
-		
     	
     	//Daten in ein Resultset packen
     	try {
@@ -111,7 +110,6 @@ public class UserDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
 
         User user = new User(userName, mail, status);
     	return user;
