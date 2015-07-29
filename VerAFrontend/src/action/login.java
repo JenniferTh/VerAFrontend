@@ -4,9 +4,8 @@ import service.userFinderService;
 
 public class login {
 	private String username;
-	private int userID;
 	private String password;
-	private String infoMessage;
+	private String infoMessage = "Bitte einloggen";
 	
 	public String execute(){
 		userFinderService userFinder = new userFinderService();
@@ -14,7 +13,9 @@ public class login {
 		System.out.println(getPassword());
 		if(userFinder.loginSuccess(username, password)){
 			return "success";
-		}else {		
+		}else if(this.infoMessage.equals("Bitte einloggen")){
+			return "login";
+		}else{		
 			setInfoMessage("Der login ist fehlgeschlagen");
 			return "error";
 		}
@@ -28,13 +29,6 @@ public class login {
 		this.username = username;
 	}
 
-	public int getUserID() {
-		return userID;
-	}
-	
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
 
 	public String getPassword() {
 		return password;
