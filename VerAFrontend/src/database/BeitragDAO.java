@@ -12,12 +12,14 @@ public class BeitragDAO {
     PreparedStatement deleteArticle;
     PreparedStatement createArticle;
     PreparedStatement updateArticle;
+    PreparedStatement searchArticle;
 
 
     String sqlCreateArticle;
     String sqlDeleteArticle;
     String sqlUpdateArticle;
-
+    String sqlSearchArticle;
+    
     public BeitragDAO(){
         connection = new DBConnection().getConnection();
         createPreparedStatements();
@@ -29,10 +31,12 @@ public class BeitragDAO {
         sqlCreateArticle = "INSERT INTO Beitrag(Titel, Kategorie, Inhalt, Abteilung_Bezeichnung,Abteilung_Abteilungsleiter_Mitgliedsnummer) VALUES(?, ?, ?, ?,?)";
         sqlDeleteArticle = "DELETE FROM Beitrag WHERE Beitrag_ID =?";
         sqlUpdateArticle = "UPDATE Beitrag SET Titel=?, Inhalt = ? where Beitrag_ID = ? ";
+        sqlSearchArticle = "SELECT * FROM Beitrag where Beitrag.Titel like ? or Beitrag.Titel = ?";
         try {
             this.createArticle = this.connection.prepareStatement(sqlCreateArticle);
             this.deleteArticle = this.connection.prepareStatement(sqlDeleteArticle);
             this.updateArticle = this.connection.prepareStatement(sqlUpdateArticle);
+            this.searchArticle = this.connection.prepareStatement(sqlSearchArticle);
 
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
@@ -78,6 +82,22 @@ public class BeitragDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public ResultSet searchArticle(String term){
+    	ResultSet resSet;
+    	try {
+        	searchArticle.setString(1, term);
+    		searchArticle.setString(2, term);
+    		resSet = searchArticle.executeQuery();
+    		return resSet;
+    		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			resSet = null;
+			return resSet;
+		}
     }
 
 }

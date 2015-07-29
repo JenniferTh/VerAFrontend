@@ -22,6 +22,7 @@ public class UserDAO {
     PreparedStatement deleteUser;
 	PreparedStatement loginStatement;
 	PreparedStatement getUserStatement;
+	PreparedStatement searchUserStatement;
 
 
     //SQL Querys erstellen
@@ -32,6 +33,7 @@ public class UserDAO {
     String sqlDeleteUser;
     String sqlCreateNewUser;
     String sqlGetUser;
+    String sqlSearchUser;
 
     //Anderer Kram
     Statement stmt = null;
@@ -57,6 +59,7 @@ public class UserDAO {
         sqlSetLevel = "UPDATE Benutzer SET Level= ? where Mitgliedsnummer= ?";
         sqlDeleteUser = "DELETE FROM Benutzer where Mitgliedsnummer= ?";
         sqlGetUser = "SELECT * FROM dbwebanw_sose15_07.Benutzer where Benutzer.Mitgliedsnummer = ?";
+        sqlSearchUser = ""
         try {
             this.createUser = this.connection.prepareStatement(sqlCreateNewUser);
             this.logout = this.connection.prepareStatement(sqlLogout);
@@ -213,6 +216,12 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+    
+	public ResultSet searchUser(){
+		
+		
+		return null;
+	}
 
     /*
     *#########

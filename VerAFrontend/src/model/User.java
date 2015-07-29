@@ -53,5 +53,6 @@ public class User {
 		this.allArticles = allArticles;
 	}
 	
+
 	
 }
