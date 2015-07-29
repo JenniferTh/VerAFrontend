@@ -10,9 +10,10 @@
 <body>
 	<blink>Index</blink>
 
-	<form action="login" method = "post">
-		<input type ="submit" value = "login"> 
-	</form>	
+	<s:form action="login" method = "post">
+		<s:submit value = "login"></s:submit>
+	</s:form>	
+
 
 </body>
 </html>
