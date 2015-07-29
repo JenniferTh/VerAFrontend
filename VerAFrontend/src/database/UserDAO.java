@@ -51,7 +51,7 @@ public class UserDAO {
     */
     private void createPreparedStatements() {
         sqlCreateNewUser = "INSERT INTO Benutzer(Benutzername, Email, Level, Passwort) VALUES(?,?,?,?)";
-        sqlLogin = "SELECT * " + "FROM mitglied WHERE username=? AND passwort=?";
+        sqlLogin = "SELECT * " + "FROM Benutzer WHERE Benutzername=? AND Passwort=?";
         sqlLogout = "UPDATE Benutzer SET LoggedIn= ? where Benutzername= ?";
         sqlGetLevel = "SELECT Level FROM Benutzer WHERE Mitgliedsnummer = ?";
         sqlSetLevel = "UPDATE Benutzer SET Level= ? where Mitgliedsnummer= ?";
@@ -90,6 +90,7 @@ public class UserDAO {
 		String mail = null;
 		int status = 0;
 		//ResultSet lastArticles = null;
+		
     	
     	//Daten in ein Resultset packen
     	try {
@@ -110,6 +111,7 @@ public class UserDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
 
         User user = new User(userName, mail, status);
     	return user;

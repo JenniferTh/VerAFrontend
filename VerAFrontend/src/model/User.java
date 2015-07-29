@@ -16,6 +16,7 @@ public class User {
 	}
 	
 	ResultSet allArticles;
+	ResultSet lastComments;
 	//Nachricht schreiben
 
 	public String getUsername() {
