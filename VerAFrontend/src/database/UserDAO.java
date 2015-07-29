@@ -59,7 +59,7 @@ public class UserDAO {
         sqlSetLevel = "UPDATE Benutzer SET Level= ? where Mitgliedsnummer= ?";
         sqlDeleteUser = "DELETE FROM Benutzer where Mitgliedsnummer= ?";
         sqlGetUser = "SELECT * FROM dbwebanw_sose15_07.Benutzer where Benutzer.Mitgliedsnummer = ?";
-        sqlSearchUser = ""
+        sqlSearchUser = "SELECT * FROM Benutzer where Benutzer.Benutzername like ? or Benutzer.Benutzername = ?";
         try {
             this.createUser = this.connection.prepareStatement(sqlCreateNewUser);
             this.logout = this.connection.prepareStatement(sqlLogout);
@@ -217,10 +217,19 @@ public class UserDAO {
         }
     }
     
-	public ResultSet searchUser(){
-		
-		
-		return null;
+	public ResultSet searchUser(String term){
+		ResultSet resSet;
+		try {
+			searchUserStatement.setString(1, term);
+			searchUserStatement.setString(2, term);
+			resSet = searchUserStatement.executeQuery();
+    		return resSet;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			resSet = null;
+			return resSet;
+		}
 	}
 
     /*
