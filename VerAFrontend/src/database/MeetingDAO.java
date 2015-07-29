@@ -1,6 +1,4 @@
-package net.db.vera.entities;
-
-import net.db.vera.DBConnection;
+package database;
 
 import java.sql.Connection;
 import java.sql.Date;

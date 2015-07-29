@@ -1,8 +1,8 @@
-package net.db.vera.entities;
-
-import net.db.vera.DBConnection;
+package database;
 
 import java.sql.*;
+
+import model.User;
 
 /**
  * Created by Malte on 06.07.2015.
@@ -20,6 +20,9 @@ public class UserDAO {
     PreparedStatement getLevel;
     PreparedStatement setLevel;
     PreparedStatement deleteUser;
+	PreparedStatement loginStatement;
+	PreparedStatement getUserStatement;
+
 
     //SQL Querys erstellen
     String sqlLogin;
@@ -28,6 +31,7 @@ public class UserDAO {
     String sqlSetLevel;
     String sqlDeleteUser;
     String sqlCreateNewUser;
+    String sqlGetUser;
 
     //Anderer Kram
     Statement stmt = null;
@@ -47,18 +51,20 @@ public class UserDAO {
     */
     private void createPreparedStatements() {
         sqlCreateNewUser = "INSERT INTO Benutzer(Benutzername, Email, Level, Passwort) VALUES(?,?,?,?)";
-        sqlLogin = "UPDATE Benutzer SET LoggedIn= ? where Benutzername= ?";
+        sqlLogin = "SELECT * " + "FROM mitglied WHERE username=? AND passwort=?";
         sqlLogout = "UPDATE Benutzer SET LoggedIn= ? where Benutzername= ?";
         sqlGetLevel = "SELECT Level FROM Benutzer WHERE Mitgliedsnummer = ?";
         sqlSetLevel = "UPDATE Benutzer SET Level= ? where Mitgliedsnummer= ?";
         sqlDeleteUser = "DELETE FROM Benutzer where Mitgliedsnummer= ?";
+        sqlGetUser = "SELECT * FROM dbwebanw_sose15_07.Benutzer where Benutzer.Mitgliedsnummer = ?";
         try {
             this.createUser = this.connection.prepareStatement(sqlCreateNewUser);
             this.logout = this.connection.prepareStatement(sqlLogout);
-            this.login = this.connection.prepareStatement(sqlLogin);
             this.getLevel = this.connection.prepareStatement(sqlGetLevel);
             this.setLevel = this.connection.prepareStatement(sqlSetLevel);
             this.deleteUser = this.connection.prepareStatement(sqlDeleteUser);
+            this.loginStatement = this.connection.prepareStatement(sqlLogin);
+            this.getUserStatement = this.connection.prepareStatement(sqlGetUser);
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
             e.printStackTrace();
@@ -78,30 +84,55 @@ public class UserDAO {
             return rs;
         }
     }
+    
+    public User getUser(int id){
+		String userName = null;
+		String mail = null;
+		int status = 0;
+		//ResultSet lastArticles = null;
+		
+    	
+    	//Daten in ein Resultset packen
+    	try {
+			this.getUserStatement.setInt(1, id);
+			rs = getUserStatement.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-    public void login(String username) {
         try {
-            login.setInt(1, 1);
-            login.setString(2, username);
-            login.execute();
-        } catch (SQLException e) {
-            System.out.println("login update not successfull");
-            e.printStackTrace();
-        }
+			while (rs.next()) {
+			    userName = rs.getString(2);
+			    mail = rs.getString(3);
+			    status = rs.getInt(4);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+        User user = new User(userName, mail, status);
+    	return user;
     }
 
-    //Methode zum überprüfen, ob der Nutzername existiert
-    private boolean usernameMatch(String _username) {
-        return true;
-    }
-
-    //Methode zum überprüfen ob das eingegebene Passwort mit dem in der Datenbank übereinstimmt
-    private boolean passwordMatch(String _passwort) {
-        return true;
+    public boolean login(String username, String password) {
+    	boolean loginCorrect = false;
+		try {
+			this.loginStatement.setString(1, username);
+			this.loginStatement.setString(2, password);
+			final ResultSet resultSet = this.loginStatement.executeQuery();
+			loginCorrect = resultSet.next();
+		} catch (SQLException e) {
+			System.err.println("Usage of prepared Statement failed :-/");
+		}
+		return loginCorrect;
     }
 
 
     //Methode zum ausloggen des Users
+    //Eigentlich nicht nötig da die session in der Action Klasse gehandelt wird
     public void logout(String username) {
         //TODO implement method to logout the current user
         try {
