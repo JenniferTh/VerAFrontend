@@ -2,11 +2,23 @@
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 	"http://struts.apache.org/dtds/struts-2.0.dtd">
-	
+
 <struts>
-	<package name = "default" extends = "struts-default">
-		<action name = "getUser" class = "">
-			
+
+	<package name="default" extends="struts-default">
+	
+		<action name="getSearch" class="search.action.SearchAction">	
+			<result name="success">/success.jsp</result>
 		</action>
+		
+		<action name="getBeiErstellen" class="berstellen.action.BeiErstellenAction">		
+			<result name="bsuccess">/bsuccess.jsp</result>
+		</action>
+		
+		<action name="getTrefErstellen" class="treferstellen.action.TrefErstellenAction">		
+			<result name="tsuccess">/tsuccess.jsp</result>
+		</action>
+		
 	</package>
+	
 </struts>
