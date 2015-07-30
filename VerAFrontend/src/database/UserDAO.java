@@ -59,7 +59,7 @@ public class UserDAO {
         sqlSetLevel = "UPDATE Benutzer SET Level= ? where Mitgliedsnummer= ?";
         sqlDeleteUser = "DELETE FROM Benutzer where Mitgliedsnummer= ?";
         sqlGetUser = "SELECT * FROM dbwebanw_sose15_07.Benutzer where Benutzer.Mitgliedsnummer = ?";
-        sqlSearchUser = "SELECT * FROM Benutzer where Benutzer.Benutzername like ? or Benutzer.Benutzername = ?";
+        sqlSearchUser = "SELECT * FROM Benutzer where Benutzer.Benutzername like %?% or Benutzer.Benutzername = %?%";
         try {
             this.createUser = this.connection.prepareStatement(sqlCreateNewUser);
             this.logout = this.connection.prepareStatement(sqlLogout);

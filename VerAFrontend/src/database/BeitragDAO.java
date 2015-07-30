@@ -31,7 +31,7 @@ public class BeitragDAO {
         sqlCreateArticle = "INSERT INTO Beitrag(Titel, Kategorie, Inhalt, Abteilung_Bezeichnung,Abteilung_Abteilungsleiter_Mitgliedsnummer) VALUES(?, ?, ?, ?,?)";
         sqlDeleteArticle = "DELETE FROM Beitrag WHERE Beitrag_ID =?";
         sqlUpdateArticle = "UPDATE Beitrag SET Titel=?, Inhalt = ? where Beitrag_ID = ? ";
-        sqlSearchArticle = "SELECT * FROM Beitrag where Beitrag.Titel like ? or Beitrag.Titel = ?";
+        sqlSearchArticle = "SELECT * FROM Beitrag where Beitrag.Titel like %?% or Beitrag.Titel = %?%";
         try {
             this.createArticle = this.connection.prepareStatement(sqlCreateArticle);
             this.deleteArticle = this.connection.prepareStatement(sqlDeleteArticle);
