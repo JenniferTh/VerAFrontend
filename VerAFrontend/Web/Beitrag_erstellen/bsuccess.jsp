@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<label>Beitragstitel: </label>
+<label value="titel">Beitragstitel: </label>
 	<input type="text"> 
 	
 <br><br>
@@ -30,10 +30,10 @@
 	<br />
     <textarea rows="10" cols="50"></textarea>
      
-<form action="beitragView.jsp" method="POST">
+<form action="bsuccess.jsp" method="POST">
 		<br />
-		<input type="submit" name="bestaetigen_enter" value="Absenden">
-		<input type="submit" name="abbrechen_enter" value="Abbrechen">
+		<input type="submit" name="senden" value="Absenden">
+		<input type="submit" name="abbrechen" value="Abbrechen">
 </form>	
 
 </body>

@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 
 import service.userFinderService;
 
-public class searchAction {
+public class search {
 	
 	private String term;
 	private String infoMessage;

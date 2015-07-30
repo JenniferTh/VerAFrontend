@@ -1,6 +1,6 @@
 package action;
 
-public class trefErstellenAction {
+public class tCreate {
 
 	public String execute(){
 	

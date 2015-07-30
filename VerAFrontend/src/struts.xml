@@ -7,21 +7,21 @@
 
 	<package name="default" extends="struts-default">
 	
-		<action name="search" class="action.searchAction">	
-			<result name="success">/searchResult.jsp</result>
+		<action name="search" class="action.search">	
+			<result name="success">Suche/searchResult.jsp</result>
 		</action>
 		
-		<action name="bCreate" class="action.beiErstellenAction">		
-			<result name="bsuccess">/bsuccess.jsp</result>
+		<action name="bCreate" class="action.bCreate">		
+			<result name="bsuccess">/Beitrag_erstellen/beitragView.jsp</result>
 		</action>
 		
-		<action name="tCreate" class="action.trefErstellenAction">		
-			<result name="tsuccess">/tsuccess.jsp</result>
+		<action name="tCreate" class="action.tCreate">		
+			<result name="tsuccess">/Treffen_erstellen/tsuccess.jsp</result>
 		</action>
 		
 		<action name = "login" class = "action.login">
-			<result name ="success">/successLogin.jsp</result>
-			<result name ="error">/login.jsp</result>
+			<result name ="success">/Login/successLogin.jsp</result>
+			<result name ="error">/Login/login.jsp</result>
 		</action>
 		
 	</package>
