@@ -8,7 +8,5 @@
 </head>
 <body>
 
-<a href="\VerAFrontend\login.jsp">login</a>
-
 </body>
 </html>

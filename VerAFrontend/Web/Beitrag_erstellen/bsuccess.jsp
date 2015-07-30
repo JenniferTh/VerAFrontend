@@ -30,7 +30,7 @@
 	<br />
     <textarea rows="10" cols="50"></textarea>
      
-<form action="bsuccess.jsp" method="POST">
+<form action="beitragView.jsp" method="POST">
 		<br />
 		<input type="submit" name="bestaetigen_enter" value="Absenden">
 		<input type="submit" name="abbrechen_enter" value="Abbrechen">

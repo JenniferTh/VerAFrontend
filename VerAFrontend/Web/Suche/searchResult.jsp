@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<a href="\VerAFrontend\login.jsp">login</a>
-
+ <!-- -- --> Ausgabe von term-suchergebniss 
 </body>
 </html>

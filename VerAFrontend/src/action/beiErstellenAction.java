@@ -1,6 +1,6 @@
 package action;
 
-public class BeiErstellenAction {
+public class beiErstellenAction {
 
 	public String execute(){
 		

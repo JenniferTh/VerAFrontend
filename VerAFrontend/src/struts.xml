@@ -7,15 +7,15 @@
 
 	<package name="default" extends="struts-default">
 	
-		<action name="getSearch" class="action.SearchAction">	
-			<result name="success">/success.jsp</result>
+		<action name="search" class="action.searchAction">	
+			<result name="success">/searchResult.jsp</result>
 		</action>
 		
-		<action name="getBeiErstellen" class="action.BeiErstellenAction">		
+		<action name="bCreate" class="action.beiErstellenAction">		
 			<result name="bsuccess">/bsuccess.jsp</result>
 		</action>
 		
-		<action name="getTrefErstellen" class="action.TrefErstellenAction">		
+		<action name="tCreate" class="action.trefErstellenAction">		
 			<result name="tsuccess">/tsuccess.jsp</result>
 		</action>
 		
