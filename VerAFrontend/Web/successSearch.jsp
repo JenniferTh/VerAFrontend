@@ -11,13 +11,12 @@
 <form action="select.html"> 
 		<select name="suchdropdown" size="1"> 
 			<option>User</option> 
-			<option>Beitragstitel</option>  
+			<option>Beitrag</option>  
 		</select> 
-	</form>
-	<form action="success.jsp" method="POST">
 		<input type="text" name="term">
 		<input type="submit" name="suche_enter" value="Suche">
 	</form>
+	
 <hr><br>	
 
 </body>

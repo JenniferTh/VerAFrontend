@@ -59,7 +59,7 @@ public class UserDAO {
         sqlSetLevel = "UPDATE Benutzer SET Level= ? where Mitgliedsnummer= ?";
         sqlDeleteUser = "DELETE FROM Benutzer where Mitgliedsnummer= ?";
         sqlGetUser = "SELECT * FROM dbwebanw_sose15_07.Benutzer where Benutzer.Mitgliedsnummer = ?";
-        sqlSearchUser = "SELECT * FROM Benutzer where Benutzer.Benutzername like %?% or Benutzer.Benutzername = %?%";
+        sqlSearchUser = "SELECT * FROM Benutzer where Benutzer.Benutzername like %?%";
         try {
             this.createUser = this.connection.prepareStatement(sqlCreateNewUser);
             this.logout = this.connection.prepareStatement(sqlLogout);
@@ -68,6 +68,7 @@ public class UserDAO {
             this.deleteUser = this.connection.prepareStatement(sqlDeleteUser);
             this.loginStatement = this.connection.prepareStatement(sqlLogin);
             this.getUserStatement = this.connection.prepareStatement(sqlGetUser);
+            this.searchUserStatement = this.connection.prepareStatement(sqlSearchUser);
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
             e.printStackTrace();
@@ -221,7 +222,6 @@ public class UserDAO {
 		ResultSet resSet;
 		try {
 			searchUserStatement.setString(1, term);
-			searchUserStatement.setString(2, term);
 			resSet = searchUserStatement.executeQuery();
     		return resSet;
 		} catch (SQLException e) {

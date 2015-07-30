@@ -1,4 +1,6 @@
 package service;
+import java.sql.ResultSet;
+
 import database.UserDAO;
 
 public class userFinderService {
@@ -9,5 +11,14 @@ public class userFinderService {
 			return false;
 		}
 		return user.login(username, password);
+	}
+	
+	public ResultSet searchForUser(String term){
+			
+		if(term!=null){
+			return user.searchUser(term);
+		}else{
+			return null;
+		}
 	}
 }
