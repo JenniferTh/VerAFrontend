@@ -68,6 +68,7 @@ public class UserDAO {
             this.deleteUser = this.connection.prepareStatement(sqlDeleteUser);
             this.loginStatement = this.connection.prepareStatement(sqlLogin);
             this.getUserStatement = this.connection.prepareStatement(sqlGetUser);
+            this.searchUserStatement = this.connection.prepareStatement(sqlSearchUser);
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
             e.printStackTrace();
@@ -114,9 +115,7 @@ public class UserDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-
-        User user = new User(userName, mail, status);
+        User user = new User(userName, mail);
     	return user;
     }
 

@@ -7,7 +7,7 @@ public class User {
 	String mailAdress;
 	int status;
 	
-	public User(String username, String mailAdress, int status) {
+	public User(String username, String mailAdress) {
 		super();
 		this.username = username;
 		this.mailAdress = mailAdress;

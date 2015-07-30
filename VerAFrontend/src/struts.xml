@@ -13,5 +13,8 @@
 		<action name="logout" class="action.logout">
 			<result name="success">/index.jsp</result>
 		</action>
+		<action name="search" class="action.SearchAction">
+			<result name="successSearch">/searchResult.jsp</result>
+		</action>
 	</package>
 </struts>
