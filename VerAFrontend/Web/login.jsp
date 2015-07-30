@@ -9,16 +9,14 @@
 </head>
 <body>
 <blink>
-	<s:property value = "infoMessage"/>
+	<h2><s:property value = "infoMessage"/></h2>
 	
 </blink>
 
-	<form action="login" method = "post">
-		<table cellpadding = "4" cellspacing = "4" border = "1" align = "center">
-			<tr><td>Login:</td><td><input id ="username" type="text" name = "username"/></td></tr>
-			<tr><td>Passwort:</td><td><input id ="password" type="text" name = "password"/></td></tr>
-			<tr><td colspan ="2" align ="center"><input type ="submit" value = "login"> 
-		</table>
-	</form>	
+	<s:form action="login" method = "post">
+		<s:textfield name="username" label= "Benutzername"></s:textfield>
+		<s:textfield name="password" label= "Passwort"></s:textfield>
+		<s:submit value = "login"></s:submit>
+	</s:form>	
 </body>
 </html>
