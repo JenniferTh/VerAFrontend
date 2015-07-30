@@ -9,7 +9,7 @@
 </head>
 <body>
 <blink>
-	<s:property value = "infoMessage"/>
+	<h2><s:property value = "infoMessage"/></h2>
 	
 </blink>
 
