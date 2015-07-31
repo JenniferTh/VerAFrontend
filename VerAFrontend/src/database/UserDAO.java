@@ -108,6 +108,12 @@ public class UserDAO {
 		}
     }
     
+    public String getUserName(int user_id){
+    	String username;
+    	username=getUser(user_id).getUsername();
+    	return username;
+    }
+    
     public User getUser(int id){
 		String userName = null;
 		String mail = null;
