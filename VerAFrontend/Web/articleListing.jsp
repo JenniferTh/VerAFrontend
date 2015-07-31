@@ -57,36 +57,27 @@
 		<!--=====================================
 				/Top Fixed Navigation Menu END 
 		======================================-->
-	<div id="wrapper-inner" style="position:relative;">
-		<div class="wrapper-padding">
-			<br></br>
-			<div id="content">
-				<div class="grid-row">	
-					<div class="grid-90">
-						<span id="vera-topic-1" class="h2">
-							Treffen
-						</span>
-						<table class="table">
-						  <thead>
-							  <tr>
-							    <th>Thema</th>
-							    <th>Kategorie</th>
-							    <th>Autor</th>
-							    <th></th>
-							  </tr>
-							  </thead>
-							<s:iterator value="articles">
-								<tr>
-									<td><s:property value="title"/></td>
-									<td><s:property value="category"/></td>
-									<td><s:property value="author"/></td> 
-								</tr>
-							</s:iterator>
-						</table>
-					</div>
-				</div>
-			</div>	
-		</div>
+	<div class="clear"></div>
+	<div id="container">
+	<h2 class="h2">Beitrag</h2>
+	<table class="table">
+	  <thead>
+		  <tr>
+		    <th><h3>Thema</h3></th>
+		    <th><h3>Kategorie</h3></th>
+		    <th><h3>Autor</h3></th>
+		    <th></th>
+		  </tr>
+		  </thead>
+		<s:iterator value="articles">
+			<tr>
+				<td><s:property value="title"/></td>
+				<td><s:property value="category"/></td>
+				<td><s:property value="author"/></td> 
+			</tr>
+		</s:iterator>
+	</table>
+					
 	</div>
 </div>	
 </body>

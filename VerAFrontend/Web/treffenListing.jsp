@@ -19,8 +19,6 @@
 </head>
 <body>
 
-<div id="wrapper">
-
 		<!--=====================================
 				Top Fixed Navigation Menu BEGIN
 		======================================-->
@@ -57,52 +55,41 @@
 		<!--=====================================
 				/Top Fixed Navigation Menu END 
 		======================================-->
-	<div id="wrapper-inner" style="position:relative;">
-		<div class="wrapper-padding">
-			<br></br>
-			<div id="content">
-				<div class="grid-row">	
-					<div class="grid-90">
-						<span id="vera-topic-1" class="h2">
-							Treffen
-						</span>
-						<table class="table">
-						  <thead>
-							  <tr>
-							    <th>Thema</th>
-							    <th>Kategorie</th>
-							    <th>Teilnehmer</th>
-							    <th>Ort</th>
-							    <th>Uhrzeit</th>
-							    <th>Datum</th>
-							    <th>Info</th>
-							    <th></th>
-							  </tr>
-							  </thead>
-							<s:iterator value="meetings">
-								<tr>
-									<td><s:property value="thema"/></td>
-									<td><s:property value="kategorie"/></td>
-									<td><s:property value="maxTeilnehmer"/></td>
-									<td><s:property value="ort"/></td>
-									<td><s:property value="uhrzeit"/></td>
-									<td><s:property value="datum"/></td>
-									<td><s:property value="info"/></td>
-									<%
-									
-									%>
-									<td><s:form action="joinMeeting" method="post">
-									<s:param name="JoinMeeting.meetingID" value="treffenID" />
-									<s:submit method="execute" value="Teilnehmen" />
-									</s:form></td> 
-								</tr>
-							</s:iterator>
-						</table>
-					</div>
-				</div>
-			</div>	
-		</div>
-	</div>
+	<div class="clear"></div>
+	<div id="container">
+		<h2 class="h2">Treffen</h2>
+		<table class="table">
+		  <thead>
+			  <tr>
+			    <th>Thema</th>
+			    <th>Kategorie</th>
+			    <th>Teilnehmer</th>
+			    <th>Ort</th>
+			    <th>Uhrzeit</th>
+			    <th>Datum</th>
+			    <th>Info</th>
+			    <th></th>
+			  </tr>
+			  </thead>
+			<s:iterator value="meetings">
+		<tr>
+			<td><s:property value="thema"/></td>
+		<td><s:property value="kategorie"/></td>
+		<td><s:property value="maxTeilnehmer"/></td>
+		<td><s:property value="ort"/></td>
+		<td><s:property value="uhrzeit"/></td>
+		<td><s:property value="datum"/></td>
+		<td><s:property value="info"/></td>
+		<%
+		
+		%>
+		<td><s:form action="joinMeeting" method="post">
+		<s:param name="JoinMeeting.meetingID" value="treffenID" />
+		<s:submit method="execute" value="Teilnehmen" />
+		</s:form></td> 
+		</tr>
+		</s:iterator>
+		</table>
 </div>	
 </body>
 </html>
