@@ -24,7 +24,7 @@
 
 						<li><a href="#">Beiträge</a></li>
 						
-						<li><a href="treffenListing.jsp">Treffen</a></li>
+						<li><a href="meetingListing.action">Treffen</a></li>
 						
 						<li><a href="#">Suche</a></li>
 

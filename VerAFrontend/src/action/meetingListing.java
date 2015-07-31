@@ -1,18 +1,25 @@
+
 package action;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 import model.Treffen;
+import service.meetingFinderService;
 
 public class meetingListing extends ActionSupport implements SessionAware{
-	List<Treffen> meetings;
+	private List<Treffen> meetings = new LinkedList<Treffen>();
 	private static final long serialVersionUID = 1L;
+	private meetingFinderService meetingFinder = new meetingFinderService();
 
+	
 	public String execute(){
-		Treffen a = new Treffen(null, null, null, null, null, 0);
-		return SUCCESS;
+		if(meetingFinder.getTreffen()!=null){
+			setMeetings(meetingFinder.getTreffen());
+			return SUCCESS;
+		}else{return ERROR;}
 	}
 	
 	@Override
@@ -34,3 +41,4 @@ public class meetingListing extends ActionSupport implements SessionAware{
 	}
 	
 }
+
