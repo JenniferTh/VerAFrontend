@@ -16,6 +16,10 @@
 			<result name="success">/Beitrag/beitragView.jsp</result>
 		</action>
 		
+		<action name="bEdit" class="action.bEdit">
+			<result name="eSuccess">/Beitrag/bEditView.jsp</result>
+		</action>
+		
 		<action name="tCreate" class="action.tCreate">		
 			<result name="tsuccess">/Treffen_erstellen/tsuccess.jsp</result>
 		</action>
