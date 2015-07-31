@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
 <!-- Main CSS File -->
 <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen" />
+
 <title>Index</title>
 </head>
 <body>
