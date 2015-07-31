@@ -106,8 +106,6 @@ public class UserDAO {
 			e.printStackTrace();
 			return 1337;
 		}
-    	
- 
     }
     
     public User getUser(int id){

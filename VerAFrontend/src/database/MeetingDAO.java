@@ -22,6 +22,7 @@ public class MeetingDAO {
     PreparedStatement getUserCount;
     PreparedStatement getUserMax;
     PreparedStatement getAllMeetings;
+    PreparedStatement validateUser;
     
     String sqlCreateMeeting;
     String sqlJoinMeeting;
@@ -29,24 +30,28 @@ public class MeetingDAO {
     String sqlGetUserCount;
     String sqlGetUserMax;
     String sqlGetAllMeetings;
+    String sqlValidateUser;
 
     
     public MeetingDAO() {
         connection = new DBConnection().getConnection();
         createPreparedStatements();
     }
+    
 
     private void createPreparedStatements() {
         sqlCreateMeeting = "INSERT INTO Treffen(Thema, Info, Kategorie, Ort, Datum, Uhrzeit, Teilnehmer) VALUES(?,?,?,?,?,?,?)";
         sqlJoinMeeting = "INSERT INTO Teilnehmer_eines_Treffens (Benutzer_Mitgliedsnummer, Treffen_Thema) VALUES (?,?)";
         sqlUnjoinMeeting ="DELETE FROM Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer =?";
         sqlGetUserCount = "SELECT COUNT(Treffen_ID) FROM Teilnehmer_eines_Treffens WHERE Treffen_ID=?";
-        sqlGetAllMeetings ="SELECT * FROM Treffen";
+        sqlGetAllMeetings ="SELECT * FROM dbwebanw_sose15_07.Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer = ? AND Treffen_ID = ?;";
+        sqlValidateUser ="";
         try {
             this.createMeeting = this.connection.prepareStatement(sqlCreateMeeting);
             this.joinMeeting = this.connection.prepareStatement(sqlJoinMeeting);
             this.unjoinMeeting = this.connection.prepareStatement(sqlUnjoinMeeting);
             this.getAllMeetings= this.connection.prepareStatement(sqlGetAllMeetings);
+            this.validateUser = this.connection.prepareStatement(sqlValidateUser);
 
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
@@ -156,6 +161,25 @@ public class MeetingDAO {
 			meetingList=null;
 			e.printStackTrace();
 			return meetingList;
+		}
+    }
+    
+    public boolean validateUser(int mitgliedsnummer, int treffen_id){
+    	ResultSet rs;
+    	try {
+    		validateUser.setInt(1, mitgliedsnummer);
+    		validateUser.setInt(2, treffen_id);
+			rs = validateUser.executeQuery();
+			if(rs.next()){
+				return true;
+			}
+			else{
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
 		}
     }
 }
