@@ -16,7 +16,7 @@ public class bCreate {
 		System.out.println(getKathegorie());
 		System.out.println(getInhalt());
 		System.out.println(getMitgliedsnummer());
-		beitrag.createArticle(Titel, Kathegorie, Inhalt, Mitgliedsnummer);
+		beitrag.createArticle(Titel, Kathegorie, Inhalt);
 		return "bsuccess";
 	}
 	
