@@ -1,5 +1,6 @@
 package action;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
@@ -7,11 +8,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.Treffen;
 
 public class meetingListing extends ActionSupport implements SessionAware{
-	List<Treffen> meetings;
+	List<Treffen> meetings = new LinkedList<Treffen>();
 	private static final long serialVersionUID = 1L;
 
 	public String execute(){
-		Treffen a = new Treffen();
+		
 		return SUCCESS;
 	}
 	

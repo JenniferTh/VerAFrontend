@@ -1,6 +1,9 @@
+<%@page import="action.meetingListing"%>
+<%@page import="model.Treffen"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="s"  uri="/struts-tags" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -59,6 +62,28 @@
 						<span id="vera-topic-1" class="h2">
 							Treffen
 						</span>
+						<table>
+						  <thead>
+							  <tr>
+							    <th>Thema</th>
+							    <th>Kategorie</th>
+							    <th>Maximale Teilnehmer</th>
+							    <th>Ort</th>
+							    <th>Uhrzeit</th>
+							    <th>Info</th>
+							  </tr>
+							  </thead>
+							<s:iterator value="meetings">
+								<tr>
+									<td><s:property value="thema"/></td>
+									<td><s:property value="kategorie"/></td>
+									<td><s:property value="maxTeilnehmer"/></td>
+									<td><s:property value="ort"/></td>
+									<td><s:property value="Uhrzeit"/></td>
+									<td><s:property value="info"/></td>								
+								</tr>
+							</s:iterator>
+						</table>
 					</div>
 				</div>
 			</div>	
