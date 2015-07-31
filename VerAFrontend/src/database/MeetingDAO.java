@@ -141,12 +141,12 @@ public class MeetingDAO {
 			tempRS = getAllMeetings.executeQuery();
 			
 			while(tempRS.next()){
-				thema= tempRS.getString(1);
-				info=tempRS.getString(2);
-				kategorie=tempRS.getString(3);
-				ort=tempRS.getString(4);
-				uhrzeit=tempRS.getString(5);
-				maxTeilnehmer=tempRS.getInt(6);
+				thema= tempRS.getString(2);
+				info=tempRS.getString(3);
+				kategorie=tempRS.getString(4);
+				ort=tempRS.getString(5);
+				uhrzeit=tempRS.getString(7);
+				maxTeilnehmer=tempRS.getInt(8);
 				treffen = new Treffen(thema, info, kategorie, ort, uhrzeit, maxTeilnehmer);
 				meetingList.add(treffen);
 			}
