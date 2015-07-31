@@ -72,6 +72,7 @@
 							    <th>Teilnehmer</th>
 							    <th>Ort</th>
 							    <th>Uhrzeit</th>
+							    <th>Datum</th>
 							    <th>Info</th>
 							    <th></th>
 							  </tr>
@@ -82,15 +83,16 @@
 									<td><s:property value="kategorie"/></td>
 									<td><s:property value="maxTeilnehmer"/></td>
 									<td><s:property value="ort"/></td>
-									<td><s:property value="Uhrzeit"/></td>
+									<td><s:property value="uhrzeit"/></td>
+									<td><s:property value="datum"/></td>
 									<td><s:property value="info"/></td>
 									<%
 									
 									%>
-									<s:form action="joinMeeting" method="post">
+									<td><s:form action="joinMeeting" method="post">
 									<s:param name="JoinMeeting.meetingID" value="treffenID" />
-									<s:submit method="execute" value="Add Piece" />
-									</s:form> 
+									<s:submit method="execute" value="Teilnehmen" />
+									</s:form></td> 
 								</tr>
 							</s:iterator>
 						</table>

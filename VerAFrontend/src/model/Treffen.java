@@ -1,19 +1,26 @@
 package model;
 
 public class Treffen {
-	private String thema, info, kategorie, ort, uhrzeit;
+	private String thema, info, kategorie, ort, uhrzeit, datum;
 	private int maxTeilnehmer, treffenID;
 
 	
 	public Treffen(String thema, String info, String kategorie, String ort, String uhrzeit, int maxTeilnehmer) {
-		super();
 		this.thema = thema;
 		this.info = info;
 		this.kategorie = kategorie;
 		this.ort = ort;
 		this.uhrzeit = uhrzeit;
 		this.maxTeilnehmer = maxTeilnehmer;
-		this.treffenID = 12345;
+	}
+	public Treffen(String thema, String info, String kategorie, String ort, String uhrzeit, int maxTeilnehmer, String datum) {
+		this.thema = thema;
+		this.info = info;
+		this.kategorie = kategorie;
+		this.ort = ort;
+		this.uhrzeit = uhrzeit;
+		this.datum = datum;
+		this.maxTeilnehmer = maxTeilnehmer;
 	}
 	public String getThema() {
 		return thema;
@@ -56,5 +63,11 @@ public class Treffen {
 	}
 	public void setTreffenID(int treffenID) {
 		this.treffenID = treffenID;
+	}
+	public String getDatum() {
+		return datum;
+	}
+	public void setDatum(String datum) {
+		this.datum = datum;
 	}
 }

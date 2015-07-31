@@ -141,7 +141,7 @@ public class MeetingDAO {
     	ResultSet tempRS;
     	List<Treffen> meetingList = new ArrayList<Treffen>();
     	Treffen treffen;
-    	String thema; String info; String kategorie; String ort; String uhrzeit; int maxTeilnehmer;
+    	String thema; String info; String kategorie; String ort; String uhrzeit; int maxTeilnehmer; String datum;
     	try {
 			tempRS = getAllMeetings.executeQuery();
 			
@@ -150,9 +150,10 @@ public class MeetingDAO {
 				info=tempRS.getString(3);
 				kategorie=tempRS.getString(4);
 				ort=tempRS.getString(5);
+				datum=tempRS.getString(6);
 				uhrzeit=tempRS.getString(7);
 				maxTeilnehmer=tempRS.getInt(8);
-				treffen = new Treffen(thema, info, kategorie, ort, uhrzeit, maxTeilnehmer);
+				treffen = new Treffen(thema, info, kategorie, ort, uhrzeit, maxTeilnehmer, datum);
 				meetingList.add(treffen);
 			}
 			return meetingList;
