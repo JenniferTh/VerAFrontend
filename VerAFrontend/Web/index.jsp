@@ -5,27 +5,67 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
+<!-- Main CSS File -->
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 <title>Index</title>
 </head>
 <body>
-	<h1>Index</h1> 
-	<%
-		session = request.getSession(false);
-		if(session.getAttribute("user")==null){	
-	%>	
-	<s:form  action="login"  method = "post">
-		<s:submit value ="login"></s:submit>
-	</s:form>	
-	<%
-		}else{
-	%>
-	<p>Herzlich Willkommen <s:property value="username"/></p>
-	<s:form  action="logout"  method = "post">
-		<s:submit value ="logout"></s:submit>
-	</s:form>	
-	<%
-		}
-	%>
+		<!--=====================================
+				Top Fixed Navigation Menu BEGIN
+		======================================-->
+		<div id="menu_div">
+			<div id="navigation">
+				<div id="menu">
+					<ul id="nav">
+						<li><a href="index.jsp">Index</a></li> 
+
+						<li><a href="#">Beiträge</a></li>
+						
+						<li><a href="#">Treffen</a></li>
+						
+						<li><a href="#">Suche</a></li>
+
+						<%
+							session = request.getSession(false);
+							if(session.getAttribute("user")==null){	
+						%>	
+							<li><a href="login.jsp">Login</a></li>							
+						<%
+							}else{
+						%>
+						<li><s:a action="logout">Logout</s:a></li>	
+						<%
+							}
+						%></li>
+						
+							
+					</ul><!-- #nav END-->					 
+				</div><!-- #menu END-->
+			</div><!-- #navigation END-->
+		</div><!-- #menu_div END-->
+		<!--=====================================
+				/Top Fixed Navigation Menu END 
+		======================================-->
+	
+
+	<div class="clear"></div>
+		<div id="container">
+			<%
+				session = request.getSession(false);
+				if(session.getAttribute("user")!=null){	
+			%>	
+				<h2>Herzlich Willkommen <s:property value="username"/></h2>
+			<%
+				}else{
+			%>
+			<h2>Herlich willkommen auf VerA</h2>
+			<%
+				}
+			%> 
+		</div>
+	</body>
+</html>
 
 </body>
 </html>

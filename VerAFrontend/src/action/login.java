@@ -21,6 +21,7 @@ public class login extends ActionSupport implements SessionAware{
 		System.out.println(getPassword());
 		if(this.userFinder.loginSuccess(username, password)){
 			session.put("user", this.username);
+			
 			return SUCCESS;
 		}else{
 			setInfoMessage("Ein Fehler ist aufgetreten");
@@ -31,9 +32,11 @@ public class login extends ActionSupport implements SessionAware{
 	public void validate(){
 		if(StringUtils.isEmpty(this.username)){
 			addFieldError("username", "Bitte gib deinen Benutzernamen ein");
+			setInfoMessage("Ein Fehler ist aufgetreten");
 		}
 		if(StringUtils.isEmpty(this.password)){
 			addFieldError("password", "Bitte gib dein Passwort ein");
+			setInfoMessage("Ein Fehler ist aufgetreten");
 		}
 	}
 

@@ -10,9 +10,13 @@ import com.opensymphony.xwork2.ActionSupport;
 public class logout extends ActionSupport implements SessionAware {
 	private SessionMap<String, Object> session;
 	private static final long serialVersionUID = 1L;
-
+	private login login = new login();
+	
 	public String execute(){
 		session.invalidate();
+		login.setInfoMessage("Bitte einloggen");
+		login.setPassword("");
+		login.setUsername("");
 		return SUCCESS;
 	}
 	
