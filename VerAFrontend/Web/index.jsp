@@ -11,6 +11,8 @@
 <title>Index</title>
 </head>
 <body>
+<div id="wrapper">
+
 		<!--=====================================
 				Top Fixed Navigation Menu BEGIN
 		======================================-->
@@ -22,7 +24,7 @@
 
 						<li><a href="#">Beiträge</a></li>
 						
-						<li><a href="#">Treffen</a></li>
+						<li><a href="treffenListing.jsp">Treffen</a></li>
 						
 						<li><a href="#">Suche</a></li>
 
@@ -37,7 +39,7 @@
 						<li><s:a action="logout">Logout</s:a></li>	
 						<%
 							}
-						%></li>
+						%>
 						
 							
 					</ul><!-- #nav END-->					 
@@ -47,25 +49,41 @@
 		<!--=====================================
 				/Top Fixed Navigation Menu END 
 		======================================-->
-	
-
-	<div class="clear"></div>
-		<div id="container">
+	<div id="wrapper-inner" style="position:relative;">
+		<div class="wrapper-padding">
+		<br></br>
 			<%
 				session = request.getSession(false);
 				if(session.getAttribute("user")!=null){	
 			%>	
-				<h2>Herzlich Willkommen <s:property value="username"/></h2>
+			<span id="vera-topic-1" class="h2">Herzlich Willkommen <s:property value="#session['user']"/></span>
 			<%
 				}else{
 			%>
-			<h2>Herlich willkommen auf VerA</h2>
+			<span id="vera-topic-1" class="h2">Herzlich willkommen auf VerA</span>
 			<%
 				}
-			%> 
-		</div>
-	</body>
-</html>
+			%>
+			<br></br>
+			<br></br>
 
+			<div id="content">
+				<div class="grid-row">	
+					<div class="grid-66">
+						<span id="vera-topic-1" class="h2">
+							Neue Beiträge
+						</span>
+					</div>
+					<div class="grid-33">
+						<span id="vera-topic-1" class="h2">
+							Aktuelle Treffen
+						</span>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>	
+	
 </body>
 </html>
