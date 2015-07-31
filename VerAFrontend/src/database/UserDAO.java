@@ -22,6 +22,7 @@ public class UserDAO {
     PreparedStatement deleteUser;
 	PreparedStatement loginStatement;
 	PreparedStatement getUserStatement;
+	PreparedStatement getUserID;
 	PreparedStatement searchUserStatement;
 
 
@@ -33,6 +34,7 @@ public class UserDAO {
     String sqlDeleteUser;
     String sqlCreateNewUser;
     String sqlGetUser;
+    String sqlGetUserID;
     String sqlSearchUser;
 
     //Anderer Kram
@@ -60,6 +62,7 @@ public class UserDAO {
         sqlDeleteUser = "DELETE FROM Benutzer where Mitgliedsnummer= ?";
         sqlGetUser = "SELECT * FROM dbwebanw_sose15_07.Benutzer where Benutzer.Mitgliedsnummer = ?";
         sqlSearchUser = "SELECT * FROM Benutzer where Benutzer.Benutzername like %?% or Benutzer.Benutzername = %?%";
+        sqlGetUserID = "SELECT * FROM dbwebanw_sose15_07.Benutzer WHERE Benutzername = ?";
         try {
             this.createUser = this.connection.prepareStatement(sqlCreateNewUser);
             this.logout = this.connection.prepareStatement(sqlLogout);
@@ -69,6 +72,7 @@ public class UserDAO {
             this.loginStatement = this.connection.prepareStatement(sqlLogin);
             this.getUserStatement = this.connection.prepareStatement(sqlGetUser);
             this.searchUserStatement = this.connection.prepareStatement(sqlSearchUser);
+            this.searchUserStatement = this.connection.prepareStatement(sqlGetUserID);
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
             e.printStackTrace();
@@ -87,6 +91,23 @@ public class UserDAO {
             rs = null;
             return rs;
         }
+    }
+    
+    public int getUser(String username){
+    	int userID;
+    	try {
+			getUserID.setString(1, username);
+			rs = getUserID.executeQuery();
+			
+			userID = rs.getInt(1);
+	    	return userID;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 1337;
+		}
+    	
+ 
     }
     
     public User getUser(int id){
