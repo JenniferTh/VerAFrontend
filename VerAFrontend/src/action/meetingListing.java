@@ -11,7 +11,7 @@ public class meetingListing extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
 
 	public String execute(){
-		
+		Treffen a = new Treffen();
 		return SUCCESS;
 	}
 	

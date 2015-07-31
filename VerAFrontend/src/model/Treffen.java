@@ -5,6 +5,15 @@ public class Treffen {
 	private int maxTeilnehmer;
 
 	
+	public Treffen(String thema, String info, String kategorie, String ort, String uhrzeit, int maxTeilnehmer) {
+		super();
+		this.thema = thema;
+		this.info = info;
+		this.kategorie = kategorie;
+		this.ort = ort;
+		this.uhrzeit = uhrzeit;
+		this.maxTeilnehmer = maxTeilnehmer;
+	}
 	public String getThema() {
 		return thema;
 	}
