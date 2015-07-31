@@ -25,7 +25,6 @@ public class meetingListing extends ActionSupport implements SessionAware{
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public List<Treffen> getMeetings() {

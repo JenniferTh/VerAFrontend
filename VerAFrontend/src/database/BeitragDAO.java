@@ -38,7 +38,7 @@ public class BeitragDAO {
         sqlCreateArticle = "INSERT INTO Beitrag(Titel, Kategorie, Inhalt) VALUES(?, ?, ?)";
         sqlDeleteArticle = "DELETE FROM Beitrag WHERE Beitrag_ID =?";
         sqlUpdateArticle = "UPDATE Beitrag SET Titel=?, Inhalt = ? where Beitrag_ID = ? ";
-        sqlGetAllArticlesWithUsernames = "SELECT bt.Beitrag_ID, bt.Titel, bt.Kategorie, bt.Inhalt, bt.Erstellungsdatum, bt.Mitgliedsnummer, bn.Benutzername FROM dbwebanw_sose15_07.Beitrag AS bt JOIN Benutzer AS bn WHERE bt.Mitgliedsnummer = bn.Mitgliedsnummer";
+        sqlGetAllArticlesWithUsernames = "SELECT bt.Beitrag_ID, bt.Titel, bt.Kategorie, bt.Inhalt, bt.Erstellungsdatum, bt.Mitgliedsnummer, bn.Benutzername FROM dbwebanw_sose15_07.Beitrag AS bt JOIN Benutzer AS bn WHERE bt.Mitgliedsnummer = bn.Mitgliedsnummer Order by Beitrag_ID";
         sqlSearchArticle = "SELECT * FROM Beitrag where Beitrag.Titel like %?% or Beitrag.Titel = %?%";
         sqlGetArticleFromUser ="Select * FROM Beitrag WHERE Mitgliedsnummer =?";
         try {

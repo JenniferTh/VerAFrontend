@@ -16,7 +16,6 @@ public class ArticleListing extends ActionSupport implements SessionAware{
 
 	
 	public String execute(){
-		System.out.println("hallo");
 		setArticles(articleFinder.getArticle());
 		if(articles.isEmpty()){
 			return ERROR;
