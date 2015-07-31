@@ -48,7 +48,6 @@ public class login extends ActionSupport implements SessionAware{
 		this.username = username;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
@@ -72,8 +71,7 @@ public class login extends ActionSupport implements SessionAware{
 	}
 	@Override
 	public void setSession(Map<String, Object> map) {
-		session = (SessionMap<String, Object>) map;
-		
+		session = (SessionMap<String, Object>) map;	
 	}
 	public SessionMap<String, Object> getSession() {
 		return session;
