@@ -26,9 +26,8 @@ public class BeitragDAO {
     }
 
     //TODO Beitrag editierbar machen
-
     private void createPreparedStatements(){
-        sqlCreateArticle = "INSERT INTO Beitrag(Titel, Kategorie, Inhalt, Abteilung_Abteilungsleiter_Mitgliedsnummer) VALUES(?, ?, ?,?)";
+        sqlCreateArticle = "INSERT INTO Beitrag(Titel, Kategorie, Inhalt) VALUES(?, ?, ?)";
         sqlDeleteArticle = "DELETE FROM Beitrag WHERE Beitrag_ID =?";
         sqlUpdateArticle = "UPDATE Beitrag SET Titel=?, Inhalt = ? where Beitrag_ID = ? ";
         sqlSearchArticle = "SELECT * FROM Beitrag where Beitrag.Titel like %?% or Beitrag.Titel = %?%";
@@ -44,14 +43,13 @@ public class BeitragDAO {
         }
     }
 
-    public void createArticle(String Titel, String Kategorie, String Inhalt,int Abteilung_Abteilungsleiter_Mitgliedsnummer){
+    public void createArticle(String Titel, String Kategorie, String Inhalt){
         //TODO create method to enable the user to create an article with the desired title and content
 
         try {
             createArticle.setString( 1, Titel );
             createArticle.setString( 2, Kategorie );
             createArticle.setString(3, Inhalt);
-            createArticle.setInt(4, Abteilung_Abteilungsleiter_Mitgliedsnummer);
             createArticle.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block

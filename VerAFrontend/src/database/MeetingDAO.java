@@ -3,6 +3,7 @@ package database;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -13,21 +14,31 @@ public class MeetingDAO {
 
     PreparedStatement joinMeeting;
     PreparedStatement createMeeting;
-
+    PreparedStatement unjoinMeeting;
+    PreparedStatement getUserCount;
+    PreparedStatement getUserMax;
+    
     String sqlCreateMeeting;
     String sqlJoinMeeting;
+    String sqlUnjoinMeeting;
+    String sqlGetUserCount;
+    String sqlGetUserMax;
 
+    
     public MeetingDAO() {
         connection = new DBConnection().getConnection();
         createPreparedStatements();
     }
 
     private void createPreparedStatements() {
-        sqlCreateMeeting = "INSERT INTO Benutzer(Thema, Ort, Datum, Abteilungsleiter_Mitgliedsnummer) VALUES(?,?,?,?,)";
+        sqlCreateMeeting = "INSERT INTO Benutzer(Thema, Info, Kategorie, Ort, Datum, Uhrzeit, Teilnehmer) VALUES(?,?,?,?,?,?,?)";
         sqlJoinMeeting = "INSERT INTO Teilnehmer_eines_Treffens (Benutzer_Mitgliedsnummer, Treffen_Thema) VALUES (?,?)";
+        sqlUnjoinMeeting ="DELETE FROM Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer =?";
+        sqlGetUserCount = "SELECT COUNT(Treffen_ID) FROM Teilnehmer_eines_Treffens WHERE Treffen_ID=?";
         try {
             this.createMeeting = this.connection.prepareStatement(sqlCreateMeeting);
             this.joinMeeting = this.connection.prepareStatement(sqlJoinMeeting);
+            this.unjoinMeeting = this.connection.prepareStatement(sqlUnjoinMeeting);
 
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
@@ -35,24 +46,24 @@ public class MeetingDAO {
         }
     }
 
-    public void createMeeting(String Thema, String Ort, int Abteilungsleiter_Mitgliedsnummer, int maxTeilnehmer, String Kategorie, Date datum, String info) {
-        Date Datum = getCurrentDate();
+    public boolean createMeeting(String thema, String info, String kategorie, String ort, Date datum ,String uhrzeit, int maxTeilnehmer) {
         try {
 
-            createMeeting.setString(1, Thema);
-            createMeeting.setString(2, Ort);
-            createMeeting.setDate(3, Datum);
-            createMeeting.setInt(4, Abteilungsleiter_Mitgliedsnummer);
+            createMeeting.setString(1, thema);
+            createMeeting.setString(2, info);
+            createMeeting.setString(3, kategorie);
+            createMeeting.setString(4, ort);
+            createMeeting.setDate(5, datum);
+            createMeeting.setString(6, uhrzeit);
+            createMeeting.setInt(7, maxTeilnehmer);
             createMeeting.executeUpdate();
+            
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                connection.rollback();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
             System.out.println("MeetingDAO konnte nicht erstellt werden du Lauch");
+            return false;
         }
     }
 
@@ -61,15 +72,55 @@ public class MeetingDAO {
         return new java.sql.Date(today.getTime());
     }
 
-    public void joinMeeting(int mitgliedsnummer, String thema) {
+    public boolean joinMeeting(int mitgliedsnummer, int treffenID) {
+    	//Zuerst die maxuser aus dem treffen holen, dann die aus teilnehmer eines Treffens
+    	//dann die beiden werte vergleichen
+    	int userMax;
+    	int userCount;
+    	ResultSet tempRS;
+    	try {
+			getUserCount.setInt(1, treffenID);
+			getUserMax.setInt(1, treffenID);
+			
+			tempRS = getUserMax.executeQuery();
+	    	userMax = tempRS.getInt(1);
+			
+	    	tempRS = getUserCount.executeQuery();
+	    	userCount = tempRS.getInt(1);
+	    	
+	    	
+	    	while(tempRS.next()){
+	    		if(userMax==userCount){
+	    			return false;
+	    		}
+	    	}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
         System.out.println("Inserting records into the table...");
         try {
             joinMeeting.setInt(1, mitgliedsnummer);
-            joinMeeting.setString(2, thema);
+            joinMeeting.setInt(2, treffenID);
+            joinMeeting.executeQuery();
+            return true;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.out.println("Anmeldung war nicht erfolgreich du Lauch");
             e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public void unjoinMeeting(int mitgliedsnummer){
+        try {
+            unjoinMeeting.setInt(1, mitgliedsnummer);
+            unjoinMeeting.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("MeetingDAO konnte nicht erstellt werden du Lauch :/");
         }
     }
 }
