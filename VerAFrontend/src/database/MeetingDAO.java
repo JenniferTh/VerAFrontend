@@ -31,7 +31,7 @@ public class MeetingDAO {
     }
 
     private void createPreparedStatements() {
-        sqlCreateMeeting = "INSERT INTO Benutzer(Thema, Info, Kategorie, Ort, Datum, Uhrzeit, Teilnehmer) VALUES(?,?,?,?,?,?,?)";
+        sqlCreateMeeting = "INSERT INTO Treffen(Thema, Info, Kategorie, Ort, Datum, Uhrzeit, Teilnehmer) VALUES(?,?,?,?,?,?,?)";
         sqlJoinMeeting = "INSERT INTO Teilnehmer_eines_Treffens (Benutzer_Mitgliedsnummer, Treffen_Thema) VALUES (?,?)";
         sqlUnjoinMeeting ="DELETE FROM Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer =?";
         sqlGetUserCount = "SELECT COUNT(Treffen_ID) FROM Teilnehmer_eines_Treffens WHERE Treffen_ID=?";
