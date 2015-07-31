@@ -20,9 +20,9 @@
 					<ul id="nav">
 						<li><a href="index.jsp">Index</a></li> 
 
-						<li><a href="#">Beiträge</a></li>
+						<li><a href="articleListing.action">Beiträge</a></li>
 						
-						<li><a href="#">Treffen</a></li>
+						<li><a href="meetingListing.action">Treffen</a></li>
 						
 						<li><a href="#">Suche</a></li>
 
@@ -30,14 +30,14 @@
 							session = request.getSession(false);
 							if(session.getAttribute("user")==null){	
 						%>	
-						<li><a href="login.jsp">Login</a></li>	
+							<li><a href="login.jsp">Login</a></li>							
 						<%
 							}else{
 						%>
 						<li><s:a action="logout">Logout</s:a></li>	
 						<%
 							}
-						%></li>
+						%>
 						
 							
 					</ul><!-- #nav END-->					 

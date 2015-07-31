@@ -10,5 +10,8 @@ public class meetingFinderService {
 	public List<Treffen> getTreffen(){
 		return meetings.getAllMeetings();
 	}
+	/*public boolean joinMetting(String username, int treffenID){
+		return joinMeeting(username, treffenID);
+	}*/
 }
 

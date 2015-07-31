@@ -22,7 +22,7 @@
 					<ul id="nav">
 						<li><a href="index.jsp">Index</a></li> 
 
-						<li><a href="#">Beiträge</a></li>
+						<li><a href="articleListing.action">Beiträge</a></li>
 						
 						<li><a href="meetingListing.action">Treffen</a></li>
 						

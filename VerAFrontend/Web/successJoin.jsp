@@ -62,38 +62,8 @@
 				<div class="grid-row">	
 					<div class="grid-90">
 						<span id="vera-topic-1" class="h2">
-							Treffen
+							Du nimmst erfolgreich an dem Treffen teil
 						</span>
-						<table>
-						  <thead>
-							  <tr>
-							    <th>Thema</th>
-							    <th>Kategorie</th>
-							    <th>Teilnehmer</th>
-							    <th>Ort</th>
-							    <th>Uhrzeit</th>
-							    <th>Info</th>
-							    <th></th>
-							  </tr>
-							  </thead>
-							<s:iterator value="meetings">
-								<tr>
-									<td><s:property value="thema"/></td>
-									<td><s:property value="kategorie"/></td>
-									<td><s:property value="maxTeilnehmer"/></td>
-									<td><s:property value="ort"/></td>
-									<td><s:property value="Uhrzeit"/></td>
-									<td><s:property value="info"/></td>
-									<%
-									
-									%>
-									<s:form action="joinMeeting" method="post">
-									<s:param name="JoinMeeting.meetingID" value="treffenID" />
-									<s:submit method="execute" value="Add Piece" />
-									</s:form> 
-								</tr>
-							</s:iterator>
-						</table>
 					</div>
 				</div>
 			</div>	

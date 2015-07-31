@@ -17,9 +17,12 @@ public class BeitragDAO {
     PreparedStatement updateArticle;
     PreparedStatement searchArticle;
     PreparedStatement getArticleFromUser;
+    PreparedStatement getAllArticlesWithUsernames;
+    
 
 
     String sqlCreateArticle;
+    String sqlGetAllArticlesWithUsernames;
     String sqlDeleteArticle;
     String sqlUpdateArticle;
     String sqlSearchArticle;
@@ -35,12 +38,14 @@ public class BeitragDAO {
         sqlCreateArticle = "INSERT INTO Beitrag(Titel, Kategorie, Inhalt) VALUES(?, ?, ?)";
         sqlDeleteArticle = "DELETE FROM Beitrag WHERE Beitrag_ID =?";
         sqlUpdateArticle = "UPDATE Beitrag SET Titel=?, Inhalt = ? where Beitrag_ID = ? ";
+        sqlGetAllArticlesWithUsernames = "SELECT bt.Beitrag_ID, bt.Titel, bt.Kategorie, bt.Inhalt, bt.Erstellungsdatum, bt.Mitgliedsnummer, bn.Benutzername FROM dbwebanw_sose15_07.Beitrag AS bt JOIN Benutzer AS bn WHERE bt.Mitgliedsnummer = bn.Mitgliedsnummer";
         sqlSearchArticle = "SELECT * FROM Beitrag where Beitrag.Titel like %?% or Beitrag.Titel = %?%";
         sqlGetArticleFromUser ="Select * FROM Beitrag WHERE Mitgliedsnummer =?";
         try {
             this.createArticle = this.connection.prepareStatement(sqlCreateArticle);
             this.deleteArticle = this.connection.prepareStatement(sqlDeleteArticle);
             this.updateArticle = this.connection.prepareStatement(sqlUpdateArticle);
+            this.getAllArticlesWithUsernames= this.connection.prepareStatement(sqlGetAllArticlesWithUsernames);
             this.searchArticle = this.connection.prepareStatement(sqlSearchArticle);
             this.getArticleFromUser = this.connection.prepareStatement(sqlGetArticleFromUser);
 
@@ -136,6 +141,31 @@ public class BeitragDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
+		}
+    }
+    public List<Article> getAllArticles(){
+    	ResultSet tempRS;
+    	List<Article> articleList = new ArrayList<Article>();
+    	Article article;
+    	String thema; String info; String kategorie; String author;
+    	int userID;
+    	try {
+			tempRS = getAllArticlesWithUsernames.executeQuery();
+			while(tempRS.next()){
+				thema= tempRS.getString(2);
+				info=tempRS.getString(4);
+				kategorie=tempRS.getString(3);
+				userID=tempRS.getInt(6);
+				author=tempRS.getString(7);
+				article = new Article(thema, kategorie, info, userID, author);
+				articleList.add(article);
+			}
+			return articleList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			articleList=null;
+			e.printStackTrace();
+			return articleList;
 		}
     }
 

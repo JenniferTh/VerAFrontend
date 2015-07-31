@@ -17,5 +17,12 @@
 			<result name="success">/treffenListing.jsp</result>
 			<result name="input">/treffenListing.jsp</result>
 		</action>
+		<action name="joinMeeting" class="action.JoinMeeting">
+			<result name="success">/treffenListing.jsp</result>
+		</action>
+		<action name="articleListing" class="action.ArticleListing">
+			<result name="success">/articleListing.jsp</result>
+			<result name="input">/articleListing.jsp</result>
+		</action>
 	</package>
 </struts>

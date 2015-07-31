@@ -1,18 +1,28 @@
 package model;
+import database.*;
 
 public class Article {
-	String title;
-	String category;
-	String content;
+	private String title;
+	private String category;
+	private String content;
 	int userID;
+	private String author;
 	
 	
-	
+	public Article(String title, String category, String content, int userID, String user) {
+		this.title = title;
+		this.category = category;
+		this.content = content;
+		this.userID = userID;
+		this.author = user;
+		System.out.println(author);
+	}
 	public Article(String title, String category, String content, int userID) {
 		this.title = title;
 		this.category = category;
 		this.content = content;
 		this.userID = userID;
+		System.out.println(author);
 	}
 	public String getTitle() {
 		return title;
@@ -37,6 +47,12 @@ public class Article {
 	}
 	public void setUserID(int userID) {
 		this.userID = userID;
+	}
+	public String getUsername() {
+		return author;
+	}
+	public void setUsername(String username) {
+		this.author = username;
 	}
 	
 	

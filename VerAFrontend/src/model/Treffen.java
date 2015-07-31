@@ -2,7 +2,7 @@ package model;
 
 public class Treffen {
 	private String thema, info, kategorie, ort, uhrzeit;
-	private int maxTeilnehmer;
+	private int maxTeilnehmer, treffenID;
 
 	
 	public Treffen(String thema, String info, String kategorie, String ort, String uhrzeit, int maxTeilnehmer) {
@@ -13,6 +13,7 @@ public class Treffen {
 		this.ort = ort;
 		this.uhrzeit = uhrzeit;
 		this.maxTeilnehmer = maxTeilnehmer;
+		this.treffenID = 12345;
 	}
 	public String getThema() {
 		return thema;
@@ -49,5 +50,11 @@ public class Treffen {
 	}
 	public void setOrt(String ort) {
 		this.ort = ort;
+	}
+	public int getTreffenID() {
+		return treffenID;
+	}
+	public void setTreffenID(int treffenID) {
+		this.treffenID = treffenID;
 	}
 }

@@ -69,28 +69,15 @@
 							  <tr>
 							    <th>Thema</th>
 							    <th>Kategorie</th>
-							    <th>Teilnehmer</th>
-							    <th>Ort</th>
-							    <th>Uhrzeit</th>
-							    <th>Info</th>
+							    <th>Autor</th>
 							    <th></th>
 							  </tr>
 							  </thead>
-							<s:iterator value="meetings">
+							<s:iterator value="articles">
 								<tr>
-									<td><s:property value="thema"/></td>
-									<td><s:property value="kategorie"/></td>
-									<td><s:property value="maxTeilnehmer"/></td>
-									<td><s:property value="ort"/></td>
-									<td><s:property value="Uhrzeit"/></td>
-									<td><s:property value="info"/></td>
-									<%
-									
-									%>
-									<s:form action="joinMeeting" method="post">
-									<s:param name="JoinMeeting.meetingID" value="treffenID" />
-									<s:submit method="execute" value="Add Piece" />
-									</s:form> 
+									<td><s:property value="title"/></td>
+									<td><s:property value="category"/></td>
+									<td><s:property value="author"/></td> 
 								</tr>
 							</s:iterator>
 						</table>
