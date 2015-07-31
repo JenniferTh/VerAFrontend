@@ -11,6 +11,9 @@
 <title>Index</title>
 </head>
 <body>
+
+<div id="wrapper">
+
 		<!--=====================================
 				Top Fixed Navigation Menu BEGIN
 		======================================-->
@@ -30,14 +33,14 @@
 							session = request.getSession(false);
 							if(session.getAttribute("user")==null){	
 						%>	
-						<li><a href="login.jsp">Login</a></li>	
+							<li><a href="login.jsp">Login</a></li>							
 						<%
 							}else{
 						%>
 						<li><s:a action="logout">Logout</s:a></li>	
 						<%
 							}
-						%></li>
+						%>
 						
 							
 					</ul><!-- #nav END-->					 
@@ -47,14 +50,20 @@
 		<!--=====================================
 				/Top Fixed Navigation Menu END 
 		======================================-->
-	<div class="clear"></div>
-	<div id="container" align="center">
-		<h2><s:property value = "infoMessage"/></h2>
-		<s:form action="login" method = "post">
-			<s:textfield name="username" label= "Benutzername"></s:textfield>
-			<s:textfield type = "password" name="password" label= "Passwort"></s:textfield>
-			<s:submit value = "login"></s:submit>
-		</s:form>	
+	<div id="wrapper-inner" style="position:relative;">
+		<div class="wrapper-padding">
+			<br></br>
+			<div id="content">
+				<div class="grid-row">	
+					<div class="grid-90">
+						<span id="vera-topic-1" class="h2">
+							Treffen
+						</span>
+					</div>
+				</div>
+			</div>	
+		</div>
 	</div>
+</div>	
 </body>
 </html>
