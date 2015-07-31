@@ -5,6 +5,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Treffen;
 
 /**
  * Created by Malte on 06.07.2015.
@@ -17,12 +21,14 @@ public class MeetingDAO {
     PreparedStatement unjoinMeeting;
     PreparedStatement getUserCount;
     PreparedStatement getUserMax;
+    PreparedStatement getAllMeetings;
     
     String sqlCreateMeeting;
     String sqlJoinMeeting;
     String sqlUnjoinMeeting;
     String sqlGetUserCount;
     String sqlGetUserMax;
+    String sqlGetAllMeetings;
 
     
     public MeetingDAO() {
@@ -35,10 +41,12 @@ public class MeetingDAO {
         sqlJoinMeeting = "INSERT INTO Teilnehmer_eines_Treffens (Benutzer_Mitgliedsnummer, Treffen_Thema) VALUES (?,?)";
         sqlUnjoinMeeting ="DELETE FROM Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer =?";
         sqlGetUserCount = "SELECT COUNT(Treffen_ID) FROM Teilnehmer_eines_Treffens WHERE Treffen_ID=?";
+        sqlGetAllMeetings ="SELECT * FROM Treffen";
         try {
             this.createMeeting = this.connection.prepareStatement(sqlCreateMeeting);
             this.joinMeeting = this.connection.prepareStatement(sqlJoinMeeting);
             this.unjoinMeeting = this.connection.prepareStatement(sqlUnjoinMeeting);
+            this.getAllMeetings= this.connection.prepareStatement(sqlGetAllMeetings);
 
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
@@ -122,5 +130,32 @@ public class MeetingDAO {
             e.printStackTrace();
             System.out.println("MeetingDAO konnte nicht erstellt werden du Lauch :/");
         }
+    }
+    
+    public List<Treffen> getAllMeetings(){
+    	ResultSet tempRS;
+    	List<Treffen> meetingList = new ArrayList<Treffen>();
+    	Treffen treffen;
+    	String thema; String info; String kategorie; String ort; String uhrzeit; int maxTeilnehmer;
+    	try {
+			tempRS = getAllMeetings.executeQuery();
+			
+			while(tempRS.next()){
+				thema= tempRS.getString(1);
+				info=tempRS.getString(2);
+				kategorie=tempRS.getString(3);
+				ort=tempRS.getString(4);
+				uhrzeit=tempRS.getString(5);
+				maxTeilnehmer=tempRS.getInt(6);
+				treffen = new Treffen(thema, info, kategorie, ort, uhrzeit, maxTeilnehmer);
+				meetingList.add(treffen);
+			}
+			return meetingList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			meetingList=null;
+			e.printStackTrace();
+			return meetingList;
+		}
     }
 }
