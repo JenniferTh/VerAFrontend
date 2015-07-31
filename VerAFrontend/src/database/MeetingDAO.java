@@ -44,8 +44,8 @@ public class MeetingDAO {
         sqlJoinMeeting = "INSERT INTO Teilnehmer_eines_Treffens (Benutzer_Mitgliedsnummer, Treffen_Thema) VALUES (?,?)";
         sqlUnjoinMeeting ="DELETE FROM Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer =?";
         sqlGetUserCount = "SELECT COUNT(Treffen_ID) FROM Teilnehmer_eines_Treffens WHERE Treffen_ID=?";
-        sqlGetAllMeetings ="SELECT * FROM dbwebanw_sose15_07.Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer = ? AND Treffen_ID = ?;";
-        sqlValidateUser ="";
+        sqlGetAllMeetings ="SELECT * FROM dbwebanw_sose15_07.Treffen";
+        sqlValidateUser ="SELECT * FROM dbwebanw_sose15_07.Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer = ? AND Treffen_ID = ?;";
         try {
             this.createMeeting = this.connection.prepareStatement(sqlCreateMeeting);
             this.joinMeeting = this.connection.prepareStatement(sqlJoinMeeting);
