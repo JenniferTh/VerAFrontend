@@ -14,8 +14,6 @@ public class Article {
 		this.content = content;
 		this.userID = userID;
 		this.author = author;
-		System.out.println(author);
-		System.out.println(title);
 	}
 	public Article(String title, String category, String content, int userID) {
 		this.title = title;

@@ -36,7 +36,7 @@
 						<%
 							}else{
 						%>
-						<li><s:a action="logout">Logout</s:a></li>	
+						<li><s:a action="logout">Logout (<s:property value="#session['user']"/>)</s:a></li>	
 						<%
 							}
 						%>
