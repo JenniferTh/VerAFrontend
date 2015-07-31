@@ -11,11 +11,14 @@ public class search {
 	private ResultSet resSet;
 	
 	public String execute(){
-		
-		userFinderService userFinder = new userFinderService();
-		System.out.println(getTerm());
-		userFinder.searchForUser(term);
-		return "success";
+		if(term!=null){
+			userFinderService userFinder = new userFinderService();
+			System.out.println(getTerm());
+			userFinder.searchForUser(term);
+			return "success";
+		}else{
+			return "fail";
+		}
 	}
 	
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="/struts-tags" prefix="s" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,30 +9,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="bCreate" method="POST">
 
-<label value="titel">Beitragstitel: </label>
-	<input type="text"> 
-	
+<label>Beitragstitel: </label>
+		<s:textfield type="titel" name = "titel"></s:textfield>
 <br><br>
 
-<form action="select.html"> 
-	<label>Kathegorie: </label>
-	<select name="top5" size="1"> 
-		<option>Judo</option> 
-		<option>Handball</option> 
-		<option>Einrad</option> 
-		<option>Fuﬂball</option> 
-		<option>Tennis</option> 
-	</select> 
-</form>
+	
+	<s:select label="Kategorie"
+       name="kategorie"
+       headerKey="-1" headerValue="Bitte Kategorie w‰hlen"
+       list="#{'Judo': 'Judo', 'Handball':'Handball', 'Einrad':'Einrad', 'Fussball':'Fussball', 'Tennis':'Tennis'}"
+       value="kategorie"
+       required="true"
+/>
 
 <br>
 
 <label>Inhalt: </label>
 	<br />
-    <textarea rows="10" cols="50"></textarea>
+    <textarea name="inhalt" rows="10" cols="50"></textarea>
      
-<form action="bsuccess.jsp" method="POST">
 		<br />
 		<input type="submit" name="senden" value="Absenden">
 		<input type="submit" name="abbrechen" value="Abbrechen">
