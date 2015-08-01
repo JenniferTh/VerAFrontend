@@ -8,7 +8,9 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
 <!-- Main CSS File -->
 <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
-<title>Index</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen" />
+
+<title>Login</title>
 </head>
 <body>
 		<!--=====================================
@@ -55,14 +57,19 @@
 		if(session.getAttribute("user")==null){	
 		%>
 		<s:form action="login" method = "post">
-			<s:textfield name="username" label= "Benutzername"></s:textfield>
-			<s:textfield type = "password" name="password" label= "Passwort"></s:textfield>
-			<s:submit value = "login"></s:submit>
+			<label class="h3">Login</label>
+			<div class="form-group">
+			<s:textfield class="form-control" name="username" label= "Benutzername" placeholder="Benutzername"></s:textfield>
+			</div>
+			<div class="form-group">
+			<s:textfield class="form-control" type = "password" name="password" label= "Passwort" placeholder="Passwort"></s:textfield>
+			</div>
+			<s:submit value = "login" class="btn btn-default"></s:submit>
 		</s:form>
 		<%}else{%>	
 		Du Bist bereits eingeloggt<br>
 		<a href="index.jsp">Hier</a> geht es zurück zum Index
 		<%}%>
-	</div>
+	</div>	
 </body>
 </html>

@@ -62,13 +62,19 @@
 			<%
 				}else{
 			%>
-			<span id="vera-topic-1" class="h2">Herzlich willkommen auf VerA</span>
+			<span id="vera-topic-1" class="h2">Herzlich willkommen auf <abbr title="Vereinsadministration" class="initialism"><strong>VerA</strong></abbr></span>
 			<%
 				}
 			%>
 			<br></br>
 			<br></br>
-
+			<!-- <dl class="dl-horizontal">
+			  <dt>...</dt>
+			  <dd>...</dd>
+			</dl>
+			Vielleicht für Anzeige Beiträge: Titel (mit Link) und Inhalt 
+			Bootstrap Horizontal discription
+			 -->
 			<div id="content">
 				<div class="grid-row">	
 					<div class="grid-66">
