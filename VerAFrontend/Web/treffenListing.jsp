@@ -42,7 +42,7 @@
 						<%
 							}else{
 						%>
-						<li><s:a action="logout">Logout</s:a></li>	
+						<li><s:a action="logout">Logout (<s:property value="#session['user']"/>)</s:a></li>	
 						<%
 							}
 						%>
@@ -72,24 +72,28 @@
 			  </tr>
 			  </thead>
 			<s:iterator value="meetings">
-		<tr>
-			<td><s:property value="thema"/></td>
-		<td><s:property value="kategorie"/></td>
-		<td><s:property value="maxTeilnehmer"/></td>
-		<td><s:property value="ort"/></td>
-		<td><s:property value="uhrzeit"/></td>
-		<td><s:property value="datum"/></td>
-		<td><s:property value="info"/></td>
-		<%
-		
-		%>
-		<td><s:form action="joinMeeting" method="post">
-		<s:param name="JoinMeeting.meetingID" value="treffenID" />
-		<s:submit method="execute" value="Teilnehmen" />
-		</s:form></td> 
-		</tr>
-		</s:iterator>
-		</table>
+				<tr>
+				<td><s:property value="thema"/></td>
+				<td><s:property value="kategorie"/></td>
+				<td><s:property value="maxTeilnehmer"/></td>
+				<td><s:property value="ort"/></td>
+				<td><s:property value="uhrzeit"/></td>
+				<td><s:property value="datum"/></td>
+				<td><s:property value="info"/></td>
+				<%
+				session = request.getSession(false);
+				if(session.getAttribute("user")!=null){	
+				%>
+				<td><s:form action="joinMeeting" method="post">
+				<s:param name="JoinMeeting.meetingID" value="treffenID" />
+				<s:submit method="execute" value="Teilnehmen" />
+				</s:form></td> 
+				<%}else{%>
+				<td width="150px"><a href="login.jsp">Bitte einloggen</a></td>
+				<%}%>
+				</tr>
+		</s:iterator>	
+	</table>
 </div>	
 </body>
 </html>

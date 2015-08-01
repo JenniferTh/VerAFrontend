@@ -34,7 +34,7 @@
 						<%
 							}else{
 						%>
-						<li><s:a action="logout">Logout</s:a></li>	
+							<li><s:a action="logout">Logout (<s:property value="#session['user']"/>)</s:a></li>	
 						<%
 							}
 						%>
@@ -50,11 +50,19 @@
 	<div class="clear"></div>
 	<div id="container" align="center">
 		<h2><s:property value = "infoMessage"/></h2>
+		<%
+		session = request.getSession(false);
+		if(session.getAttribute("user")==null){	
+		%>
 		<s:form action="login" method = "post">
 			<s:textfield name="username" label= "Benutzername"></s:textfield>
 			<s:textfield type = "password" name="password" label= "Passwort"></s:textfield>
 			<s:submit value = "login"></s:submit>
-		</s:form>	
+		</s:form>
+		<%}else{%>	
+		Du Bist bereits eingeloggt<br>
+		<a href="index.jsp">Hier</a> geht es zurück zum Index
+		<%}%>
 	</div>
 </body>
 </html>

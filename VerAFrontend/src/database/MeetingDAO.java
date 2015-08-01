@@ -23,6 +23,7 @@ public class MeetingDAO {
     PreparedStatement getUserMax;
     PreparedStatement getAllMeetings;
     PreparedStatement validateUser;
+    PreparedStatement getAllParticipants;
     
     String sqlCreateMeeting;
     String sqlJoinMeeting;
@@ -31,7 +32,7 @@ public class MeetingDAO {
     String sqlGetUserMax;
     String sqlGetAllMeetings;
     String sqlValidateUser;
-
+    String sqlGetAllParticipants;
     
     public MeetingDAO() {
         connection = new DBConnection().getConnection();
@@ -46,12 +47,14 @@ public class MeetingDAO {
         sqlGetUserCount = "SELECT COUNT(Treffen_ID) FROM Teilnehmer_eines_Treffens WHERE Treffen_ID=?";
         sqlGetAllMeetings ="SELECT * FROM dbwebanw_sose15_07.Treffen order by Datum DESC, Uhrzeit DESC;";
         sqlValidateUser ="SELECT * FROM dbwebanw_sose15_07.Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer = ? AND Treffen_ID = ?;";
+        sqlGetAllParticipants = "SELECT * FROM dbwebanw_sose15_07.Teilnehmer_eines_Treffens;";
         try {
             this.createMeeting = this.connection.prepareStatement(sqlCreateMeeting);
             this.joinMeeting = this.connection.prepareStatement(sqlJoinMeeting);
             this.unjoinMeeting = this.connection.prepareStatement(sqlUnjoinMeeting);
             this.getAllMeetings= this.connection.prepareStatement(sqlGetAllMeetings);
             this.validateUser = this.connection.prepareStatement(sqlValidateUser);
+            this.getAllParticipants = this.connection.prepareStatement(sqlGetAllParticipants);
 
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
@@ -139,13 +142,17 @@ public class MeetingDAO {
     
     public List<Treffen> getAllMeetings(){
     	ResultSet tempRS;
+    	ResultSet tempRS2;
     	List<Treffen> meetingList = new ArrayList<Treffen>();
     	Treffen treffen;
-    	String thema; String info; String kategorie; String ort; String uhrzeit; int maxTeilnehmer; String datum;
+    	String thema, info, kategorie, ort, uhrzeit, datum;
+    	int maxTeilnehmer, treffenID, mitgliedsNummer;
     	try {
 			tempRS = getAllMeetings.executeQuery();
+			tempRS2 = getAllParticipants.executeQuery();
 			
 			while(tempRS.next()){
+				treffenID=tempRS.getInt(1);
 				thema= tempRS.getString(2);
 				info=tempRS.getString(3);
 				kategorie=tempRS.getString(4);
@@ -153,8 +160,17 @@ public class MeetingDAO {
 				datum=tempRS.getString(6);
 				uhrzeit=tempRS.getString(7);
 				maxTeilnehmer=tempRS.getInt(8);
-				treffen = new Treffen(thema, info, kategorie, ort, uhrzeit, maxTeilnehmer, datum);
+				treffen = new Treffen(thema, info, kategorie, ort, uhrzeit, maxTeilnehmer, datum, treffenID);
 				meetingList.add(treffen);
+			}
+			while(tempRS2.next()){
+				mitgliedsNummer=tempRS2.getInt(1);
+				treffenID=tempRS2.getInt(2);
+				for(Treffen m:meetingList){
+					if(m.getTreffenID()==treffenID){
+						m.insertTeilnehmer(mitgliedsNummer);
+					}
+				}
 			}
 			return meetingList;
 		} catch (SQLException e) {

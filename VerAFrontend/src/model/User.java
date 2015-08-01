@@ -3,21 +3,21 @@ package model;
 import java.sql.ResultSet;
 
 public class User {
-	String username;
-	String mailAdress;
-	int status;
+	private String username;
+	private String mailAdress;
+	private int level;
+	private ResultSet allArticles;
+	private ResultSet lastComments;
+	//Nachricht schreiben
+
 	
 	public User(String username, String mailAdress) {
 		super();
 		this.username = username;
 		this.mailAdress = mailAdress;
-		this.status = status;
+		this.level = level;
 		this.allArticles = allArticles;
 	}
-	
-	ResultSet allArticles;
-	ResultSet lastComments;
-	//Nachricht schreiben
 
 	public String getUsername() {
 		return username;
@@ -37,12 +37,12 @@ public class User {
 		this.mailAdress = mailAdress;
 	}
 
-	public int getStatus() {
-		return status;
+	public int getLevel() {
+		return level;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setLevel(int status) {
+		this.level = status;
 	}
 
 	public ResultSet getLastArticles() {
@@ -51,6 +51,14 @@ public class User {
 
 	public void setLastArticles(ResultSet allArticles) {
 		this.allArticles = allArticles;
+	}
+
+	public ResultSet getLastComments() {
+		return lastComments;
+	}
+
+	public void setLastComments(ResultSet lastComments) {
+		this.lastComments = lastComments;
 	}
 	
 
