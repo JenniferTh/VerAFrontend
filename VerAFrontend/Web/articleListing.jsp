@@ -60,7 +60,7 @@
 	<div class="clear"></div>
 	<div id="container">
 	<h2 class="h2">Beitrag</h2>
-	<table class="table">
+	<table class="table table-bordered table-hover">
 	  <thead>
 		  <tr>
 		    <th><h3>Thema</h3></th>
