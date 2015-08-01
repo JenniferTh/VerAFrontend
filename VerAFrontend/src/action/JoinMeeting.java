@@ -1,19 +1,24 @@
 package action;
 
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.opensymphony.xwork2.ActionSupport;
 import service.meetingFinderService;
 
-public class JoinMeeting extends ActionSupport {
+public class JoinMeeting extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private String username;
-	private int meetingID = 100;
+	private int meetingID, mitgliedsnummer;
 	private meetingFinderService meetingFinder = new meetingFinderService();
 	
 	public String execute(){
-		/*if(meetingFinder.joinMetting(username, treffenID)){
+		/*if(meetingFinder.joinMetting(mitgliedsnummer, meetingID)){
 			return SUCCESS;
 		}*/
-		System.out.println(""+meetingID);
+		System.out.println(mitgliedsnummer);
+		System.out.println(meetingID);
 		return SUCCESS;
 	}
 
@@ -43,6 +48,28 @@ public class JoinMeeting extends ActionSupport {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int getMeetingID() {
+		return meetingID;
+	}
+
+	public void setMeetingID(int meetingID) {
+		this.meetingID = meetingID;
+	}
+
+	public int getMitgliedsnummer() {
+		return mitgliedsnummer;
+	}
+
+	public void setMitgliedsnummer(int mitgliedsnummer) {
+		this.mitgliedsnummer = mitgliedsnummer;
 	}
 
 }

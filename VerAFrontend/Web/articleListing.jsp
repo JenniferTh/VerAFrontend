@@ -19,11 +19,7 @@
 </head>
 <body>
 
-<div id="wrapper">
-
-		<!--=====================================
-				Top Fixed Navigation Menu BEGIN
-		======================================-->
+	<div id="wrapper">
 		<div id="menu_div">
 			<div id="navigation">
 				<div id="menu">
@@ -48,15 +44,12 @@
 						<%
 							}
 						%>
-						
-							
 					</ul><!-- #nav END-->					 
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
-		<!--=====================================
-				/Top Fixed Navigation Menu END 
-		======================================-->
+
+
 	<div class="clear"></div>
 	<div id="container">
 	<h2 class="h2">Beitrag</h2>
@@ -66,7 +59,7 @@
 		    <th><h3>Thema</h3></th>
 		    <th><h3>Kategorie</h3></th>
 		    <th><h3>Autor</h3></th>
-		    <th></th>
+		    <th><h3>Mehr</h3></th>
 		  </tr>
 		  </thead>
 		<s:iterator value="articles">
@@ -74,6 +67,18 @@
 				<td><s:property value="title"/></td>
 				<td><s:property value="category"/></td>
 				<td><s:property value="author"/></td> 
+				<%
+				session = request.getSession(false);
+				if(session.getAttribute("user")!=null){	
+				%>
+				<!-- Hier Verlinkung zur BeitragView einfügen -->
+				<td width="100px"><s:form action="" method="post">
+				<s:param name="" value="" />
+				<s:submit class="btn btn-primary" method="execute" value="Beitrag anzeigen" />
+				</s:form></td> 
+				<%}else{%>
+				<td width="100px"><a class="btn btn-default" href="login.jsp" role="button">Bitte einloggen</a></td>
+				<%}%>
 			</tr>
 		</s:iterator>
 	</table>

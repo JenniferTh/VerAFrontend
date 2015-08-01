@@ -2,6 +2,7 @@ package database;
 
 import java.sql.*;
 
+import model.Treffen;
 import model.User;
 
 /**
@@ -23,6 +24,7 @@ public class UserDAO {
 	PreparedStatement loginStatement;
 	PreparedStatement getUserStatement;
 	PreparedStatement getUserID;
+	PreparedStatement getUserIDv2;
 	PreparedStatement searchUserStatement;
 
 
@@ -35,6 +37,7 @@ public class UserDAO {
     String sqlCreateNewUser;
     String sqlGetUser;
     String sqlGetUserID;
+    String sqlGetUserIDv2;
     String sqlSearchUser;
 
     //Anderer Kram
@@ -63,6 +66,7 @@ public class UserDAO {
         sqlGetUser = "SELECT * FROM dbwebanw_sose15_07.Benutzer where Benutzer.Mitgliedsnummer = ?";
         sqlSearchUser = "SELECT * FROM Benutzer where Benutzer.Benutzername like %?% or Benutzer.Benutzername = %?%";
         sqlGetUserID = "SELECT * FROM dbwebanw_sose15_07.Benutzer WHERE Benutzername = ?";
+        sqlGetUserIDv2 = "SELECT * FROM dbwebanw_sose15_07.Benutzer;";
         try {
             this.createUser = this.connection.prepareStatement(sqlCreateNewUser);
             this.logout = this.connection.prepareStatement(sqlLogout);
@@ -73,6 +77,7 @@ public class UserDAO {
             this.getUserStatement = this.connection.prepareStatement(sqlGetUser);
             this.searchUserStatement = this.connection.prepareStatement(sqlSearchUser);
             this.searchUserStatement = this.connection.prepareStatement(sqlGetUserID);
+            this.getUserIDv2 = this.connection.prepareStatement(sqlGetUserIDv2);
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
             e.printStackTrace();
@@ -94,13 +99,20 @@ public class UserDAO {
     }
     
     public int getUser(String username){
+    	ResultSet tempRS;
     	int userID;
-    	try {
-			getUserID.setString(1, username);
-			rs = getUserID.executeQuery();
-			
-			userID = rs.getInt(1);
-	    	return userID;
+    	String user;
+    	try {	
+    		tempRS = getUserIDv2.executeQuery();
+			while(tempRS.next()){
+				user=tempRS.getString(2);
+				userID=tempRS.getInt(1);
+				if(user.equals(username)){
+					return userID;
+				}
+			}
+			return 0;
+	    	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

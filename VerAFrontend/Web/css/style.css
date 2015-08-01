@@ -56,7 +56,7 @@ left: 0;
 } /* Free space to top specialy for menu */
 
 #navigation {
-position: fixed;
+position: absolute;
 }
 
 #navigation, #menu_div {
@@ -82,7 +82,7 @@ opacity: 0.95;/* Menu transparency on mouse hover*/
 #menu_div:not(:hover), 
 #navigation:not(:hover)
 {
-opacity: 0.8;/* Menu transparency on mouse out */
+opacity: 1;/* Menu transparency on mouse out */
 }
 
 

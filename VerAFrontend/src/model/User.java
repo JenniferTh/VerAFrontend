@@ -15,8 +15,12 @@ public class User {
 		super();
 		this.username = username;
 		this.mailAdress = mailAdress;
+	}
+	public User(String username, String mailAdress, int level) {
+		super();
+		this.username = username;
+		this.mailAdress = mailAdress;
 		this.level = level;
-		this.allArticles = allArticles;
 	}
 
 	public String getUsername() {

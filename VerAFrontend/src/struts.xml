@@ -18,7 +18,8 @@
 			<result name="input">/treffenListing.jsp</result>
 		</action>
 		<action name="joinMeeting" class="action.JoinMeeting">
-			<result name="success">/treffenListing.jsp</result>
+			<result name="success">/successJoin.jsp</result>
+			<result name="error">/successJoin.jsp</result>
 		</action>
 		<action name="articleListing" class="action.ArticleListing">
 			<result name="success">/articleListing.jsp</result>

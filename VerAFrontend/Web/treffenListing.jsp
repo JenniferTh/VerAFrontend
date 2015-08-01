@@ -86,12 +86,13 @@
 				session = request.getSession(false);
 				if(session.getAttribute("user")!=null){	
 				%>
-				<td><s:form action="joinMeeting" method="post">
-				<s:param name="JoinMeeting.meetingID" value="treffenID" />
-				<s:submit class="btn btn-default" method="execute" value="Teilnehmen" />
-				</s:form></td> 
+				<td>
+					<s:form action="joinMeeting" method="post">
+						
+						<s:submit class="btn btn-primary" method="execute" value="Teilnehmen"><s:param name="meetingID" value="treffenID" /></s:submit>
+					</s:form>
+				</td> 
 				<%}else{%>
-				
 				<td width="150px"><a class="btn btn-default" href="login.jsp" role="button">Bitte einloggen</a></td>
 				<%}%>
 				</tr>

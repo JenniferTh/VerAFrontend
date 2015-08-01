@@ -21,7 +21,7 @@ public class login extends ActionSupport implements SessionAware{
 		System.out.println(getPassword());
 		if(this.userFinder.loginSuccess(username, password)){
 			session.put("user", this.username);
-			
+			session.put("userID", this.userFinder.getUserID(username));
 			return SUCCESS;
 		}else{
 			setInfoMessage("Ein Fehler ist aufgetreten");

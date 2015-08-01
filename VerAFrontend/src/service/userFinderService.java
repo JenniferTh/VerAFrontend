@@ -13,6 +13,9 @@ public class userFinderService {
 		return user.login(username, password);
 	}
 	
+	public int getUserID(String username){
+		return user.getUser(username);
+	}
 	public ResultSet searchForUser(String term){
 			
 		if(term!=null){
