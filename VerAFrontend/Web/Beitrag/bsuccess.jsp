@@ -9,31 +9,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="bCreate" method="POST">
+	<form action="bCreate" method="POST">
 
-<label>Beitragstitel: </label>
-		<s:textfield type="titel" name = "titel"></s:textfield>
-<br><br>
+		<label>Beitragstitel: </label>
+			<s:textfield type="titel" name = "titel"></s:textfield>
+		<br><br>
 
 	
-	<s:select label="Kategorie"
-       name="kategorie"
-       headerKey="-1" headerValue="Bitte Kategorie wählen"
-       list="#{'Judo': 'Judo', 'Handball':'Handball', 'Einrad':'Einrad', 'Fussball':'Fussball', 'Tennis':'Tennis'}"
-       value="kategorie"
-       required="true"
-/>
+		<s:select label="Kategorie"
+       	name="kategorie"
+       	headerKey="-1" headerValue="Bitte Kategorie wählen"
+       	list="#{'Judo': 'Judo', 'Handball':'Handball', 'Einrad':'Einrad', 'Fussball':'Fussball', 'Tennis':'Tennis'}"
+       	value="kategorie"
+       	required="true"
+		/>
 
-<br>
+		<br>
 
-<label>Inhalt: </label>
-	<br />
-    <textarea name="inhalt" rows="10" cols="50"></textarea>
+		<label>Inhalt: </label>
+			<br />
+    		<textarea name="inhalt" rows="10" cols="50"></textarea>
      
 		<br />
+		
 		<input type="submit" name="senden" value="Absenden">
 		<input type="submit" name="abbrechen" value="Abbrechen">
-</form>	
+		
+	</form>	
 
 </body>
 </html>

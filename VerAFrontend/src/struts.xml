@@ -21,7 +21,7 @@
 		</action>
 		
 		<action name="tCreate" class="action.tCreate">		
-			<result name="tsuccess">/Treffen_erstellen/tsuccess.jsp</result>
+			<result name="success">/Treffen/treffenView.jsp</result>
 		</action>
 		
 		<action name = "login" class = "action.login">
