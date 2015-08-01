@@ -5,7 +5,7 @@ import com.sun.java_cup.internal.runtime.virtual_parse_stack;
 
 public class Treffen {
 	private String thema, info, kategorie, ort, uhrzeit, datum;
-	private int maxTeilnehmer, treffenID;
+	private int maxTeilnehmer, treffenID, anzahlTeilnehmer;
 	private Vector<Integer> teilnehmer = new Vector<Integer>(); 
 
 	
@@ -92,8 +92,12 @@ public class Treffen {
 	}
 	public void insertTeilnehmer(int i){
 		this.teilnehmer.add(i);
+		setAnzahlTeilnehmer(this.teilnehmer.size());
 	}
-	public int getAmountOfTeilnehmer(){
-		return this.teilnehmer.size();
+	public int getAnzahlTeilnehmer() {
+		return anzahlTeilnehmer;
+	}
+	public void setAnzahlTeilnehmer(int anzahlTeilnehmer) {
+		this.anzahlTeilnehmer = anzahlTeilnehmer;
 	}
 }

@@ -75,7 +75,7 @@
 				<tr>
 				<td><s:property value="thema"/></td>
 				<td><s:property value="kategorie"/></td>
-				<td><s:property value="maxTeilnehmer"/></td>
+				<td><s:property value="anzahlTeilnehmer"/>/<s:property value="maxTeilnehmer"/></td>
 				<td><s:property value="ort"/></td>
 				<td><s:property value="uhrzeit"/></td>
 				<td><s:property value="datum"/></td>
