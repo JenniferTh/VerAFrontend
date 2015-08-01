@@ -13,7 +13,6 @@
 <title>Index</title>
 </head>
 <body>
-<div id="wrapper">
 
 		<!--=====================================
 				Top Fixed Navigation Menu BEGIN
@@ -90,8 +89,6 @@
 				</div>
 			</div>	
 		</div>
-	</div>
-</div>	
-	
+	</div>	
 </body>
 </html>

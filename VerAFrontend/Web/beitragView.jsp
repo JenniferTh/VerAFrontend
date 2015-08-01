@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="wrapper">
 		<div id="menu_div">
 			<div id="navigation">
 				<div id="menu">
@@ -39,7 +38,5 @@
 		
 		<!-- Beitrag View einfügen -->
 		
-						
-	</div>
 </body>
 </html>

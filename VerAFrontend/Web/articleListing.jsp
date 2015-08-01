@@ -19,7 +19,6 @@
 </head>
 <body>
 
-	<div id="wrapper">
 		<div id="menu_div">
 			<div id="navigation">
 				<div id="menu">
@@ -84,6 +83,5 @@
 	</table>
 					
 	</div>
-</div>	
 </body>
 </html>
