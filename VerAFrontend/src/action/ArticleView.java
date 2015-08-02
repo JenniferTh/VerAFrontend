@@ -11,15 +11,14 @@ import service.ArticleFinderService;
 public class ArticleView extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
 	private Article article = new Article();
-	private int artcID = 14;
+	private int artcID;
 	private String grr;
 	private ArticleFinderService articleFinder = new ArticleFinderService();
 
 	public String execute(){
 		System.out.println("Hallo");
-		//artcID  = Integer.parseInt(grr);
 		System.out.println(artcID);
-		this.article = articleFinder.getArticle(14);
+		this.article = articleFinder.getArticle(artcID);
 		return SUCCESS;
 	}
 	

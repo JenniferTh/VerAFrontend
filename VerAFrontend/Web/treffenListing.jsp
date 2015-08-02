@@ -94,9 +94,11 @@
 				if(session.getAttribute("user")!=null){	
 				%>
 				<td>
-					<s:form action="joinMeeting" method="post">
-						<s:hidden name="meetingID" value="treffenID" />
-						<s:submit class="btn btn-primary" method="execute" value="Teilnehmen"></s:submit>
+					<s:form action="joinMeeting">
+						<p>A:<s:property value="treffenID"/>&nbspB:<s:property value="#session['userID']"/></p>
+						<s:textfield class="form-control" name="" rows="1" placeholder="A"></s:textfield>
+						<s:textfield class="form-control" name="artcID" rows="1" placeholder="B" ></s:textfield>						
+						<s:submit class="btn btn-primary" value="Teilnehmen" name="submit"/>
 					</s:form>
 				</td> 
 				<%}else{%>

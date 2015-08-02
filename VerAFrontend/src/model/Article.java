@@ -10,6 +10,7 @@ public class Article {
 	private String content;
 	private int userID;
 	private int articleID;
+	private String sArticleID;
 	private List<Comment> comments = new LinkedList<Comment>();
 	
 	public Article(){}
@@ -20,6 +21,7 @@ public class Article {
 		this.userID = userID;
 		this.author = author;
 		this.setArticleID(articleID);
+		this.sArticleID = Integer.toString(articleID);
 	}
 	public Article(String title, String category, String content, int userID, String author) {
 		this.title = title;
@@ -27,12 +29,14 @@ public class Article {
 		this.content = content;
 		this.userID = userID;
 		this.author = author;
+		this.sArticleID = Integer.toString(articleID);
 	}
 	public Article(String title, String category, String content, int userID) {
 		this.title = title;
 		this.category = category;
 		this.content = content;
 		this.userID = userID;
+		this.sArticleID = Integer.toString(articleID);
 	}
 	public String getTitle() {
 		return title;
@@ -78,5 +82,11 @@ public class Article {
 	}
 	public void insertComment(Comment comment){
 		this.comments.add(comment);
+	}
+	public String getsArticleID() {
+		return sArticleID;
+	}
+	public void setsArticleID(String sArticleID) {
+		this.sArticleID = sArticleID;
 	}
 }

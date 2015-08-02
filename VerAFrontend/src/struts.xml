@@ -29,5 +29,9 @@
 			<result name="success">/beitragView.jsp</result>
 			<result name="input">/beitragView.jsp</result>
 		</action>
+		<action name="postComment" class="action.PostComment">
+			<result name="success">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
 	</package>
 </struts>

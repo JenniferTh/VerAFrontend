@@ -68,7 +68,7 @@
 		    <th><h3>Mehr</h3></th>
 		  </tr>
 		  </thead>
-		<s:iterator value="articles">
+		<s:iterator value="articles" var="article">
 			<tr>
 				<td><s:property value="title"/></td>
 				<td><s:property value="category"/></td>
@@ -76,17 +76,15 @@
 				<%
 				session = request.getSession(false);
 				if(session.getAttribute("user")!=null){	
-					int i = 1;
 				%>		
 				<td width="100px">
 					<s:form action="showArticle">
 						<s:property value="articleID"/>
-						<s:hidden name="artcID" value="articleID"/>
+						<s:textfield class="form-control" name="artcID" rows="1" placeholder="Zahl eintragen"></s:textfield>						
 						<s:submit class="btn btn-primary" value="Beitrag anzeigen" name="submit"/>
 					</s:form>
 				</td> 
 				<%
-				i++;
 				}else{%>
 				<td width="100px"><a class="btn btn-default" href="login.jsp" role="button">Bitte einloggen</a></td>
 				<%}%>

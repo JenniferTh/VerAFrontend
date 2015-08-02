@@ -42,11 +42,12 @@ public class MeetingDAO {
 
     private void createPreparedStatements() {
         sqlCreateMeeting = "INSERT INTO Treffen(Thema, Info, Kategorie, Ort, Datum, Uhrzeit, Teilnehmer) VALUES(?,?,?,?,?,?,?)";
-        sqlJoinMeeting = "INSERT INTO Teilnehmer_eines_Treffens (Benutzer_Mitgliedsnummer, Treffen_Thema) VALUES (?,?)";
+        sqlJoinMeeting = "INSERT INTO Teilnehmer_eines_Treffens (Benutzer_Mitgliedsnummer, Treffen_ID) VALUES (?,?)";
         sqlUnjoinMeeting ="DELETE FROM Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer =?";
         sqlGetUserCount = "SELECT COUNT(Treffen_ID) FROM Teilnehmer_eines_Treffens WHERE Treffen_ID=?";
         sqlGetAllMeetings ="SELECT * FROM dbwebanw_sose15_07.Treffen order by Datum DESC, Uhrzeit;";
         sqlValidateUser ="SELECT * FROM dbwebanw_sose15_07.Teilnehmer_eines_Treffens WHERE Benutzer_Mitgliedsnummer = ? AND Treffen_ID = ?;";
+        sqlGetUserMax = "SELECT Treffen_ID, teilnehmer FROM dbwebanw_sose15_07.Treffen where =?;";
         sqlGetAllParticipants = "SELECT * FROM dbwebanw_sose15_07.Teilnehmer_eines_Treffens;";
         try {
             this.createMeeting = this.connection.prepareStatement(sqlCreateMeeting);
@@ -55,6 +56,8 @@ public class MeetingDAO {
             this.getAllMeetings= this.connection.prepareStatement(sqlGetAllMeetings);
             this.validateUser = this.connection.prepareStatement(sqlValidateUser);
             this.getAllParticipants = this.connection.prepareStatement(sqlGetAllParticipants);
+            this.getUserMax = this.connection.prepareStatement(sqlGetUserMax);
+            this.getUserCount = this.connection.prepareStatement(sqlGetUserCount);
 
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
@@ -99,17 +102,17 @@ public class MeetingDAO {
 			getUserMax.setInt(1, treffenID);
 			
 			tempRS = getUserMax.executeQuery();
-	    	userMax = tempRS.getInt(1);
-			
+	    	userMax = tempRS.getInt(2);
+
 	    	tempRS = getUserCount.executeQuery();
 	    	userCount = tempRS.getInt(1);
-	    	
-	    	
+
 	    	while(tempRS.next()){
 	    		if(userMax==userCount){
 	    			return false;
 	    		}
 	    	}
+
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -119,7 +122,7 @@ public class MeetingDAO {
         try {
             joinMeeting.setInt(1, mitgliedsnummer);
             joinMeeting.setInt(2, treffenID);
-            joinMeeting.executeQuery();
+            joinMeeting.executeUpdate();
             return true;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -164,8 +167,8 @@ public class MeetingDAO {
 				meetingList.add(treffen);
 			}
 			while(tempRS2.next()){
-				mitgliedsNummer=tempRS2.getInt(1);
-				treffenID=tempRS2.getInt(2);
+				mitgliedsNummer=tempRS2.getInt(2);
+				treffenID=tempRS2.getInt(3);
 				for(Treffen m:meetingList){
 					if(m.getTreffenID()==treffenID){
 						m.insertTeilnehmer(mitgliedsNummer);

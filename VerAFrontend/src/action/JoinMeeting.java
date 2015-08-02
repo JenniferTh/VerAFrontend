@@ -1,9 +1,7 @@
 package action;
 
 import java.util.Map;
-
 import org.apache.struts2.interceptor.SessionAware;
-
 import com.opensymphony.xwork2.ActionSupport;
 import service.meetingFinderService;
 
@@ -14,11 +12,11 @@ public class JoinMeeting extends ActionSupport implements SessionAware {
 	private meetingFinderService meetingFinder = new meetingFinderService();
 	
 	public String execute(){
-		/*if(meetingFinder.joinMetting(mitgliedsnummer, meetingID)){
-			return SUCCESS;
-		}*/
 		System.out.println(mitgliedsnummer);
 		System.out.println(meetingID);
+		if(meetingFinder.joinMetting(mitgliedsnummer, meetingID)){
+			return SUCCESS;
+		}
 		return SUCCESS;
 	}
 

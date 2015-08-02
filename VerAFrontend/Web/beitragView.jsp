@@ -75,8 +75,11 @@
 				<label>Kommentar:</label>
 		    	<textarea class="form-control" name="commentary" rows="3"></textarea>
 		     	<br>
+				<p>A:<s:property value="artcID"/>&nbspB:<s:property value="#session['userID']"/></p>
+				<s:textfield class="form-control" name="articleID" rows="1" placeholder="A"></s:textfield>
+				<s:textfield class="form-control" name="mitgliedsnummer" rows="1" placeholder="B" ></s:textfield>							
 				<input class="btn btn-primary" type="submit" name="senden" value="Absenden">				
-				</form>	
+			</form>	
 			
 			<br><br>
 			<table class="table table-bordered table-hover">
