@@ -14,14 +14,19 @@ public class login extends ActionSupport implements SessionAware{
 	private String infoMessage = "Bitte einloggen";
 	private userFinderService userFinder = new userFinderService();
 	private SessionMap<String, Object> session;
+	private int userID, level;
 	
 	public String execute(){
-		
 		System.out.println(getUsername());
 		System.out.println(getPassword());
+		this.userID = this.userFinder.getUserID(username); 
+		this.level = this.userFinder.getLevel(userID);
+		System.out.println(level);
 		if(this.userFinder.loginSuccess(username, password)){
 			session.put("user", this.username);
-			session.put("userID", this.userFinder.getUserID(username));
+			session.put("userID", this.userID);
+			session.put("level", this.level);
+
 			return SUCCESS;
 		}else{
 			setInfoMessage("Ein Fehler ist aufgetreten");
@@ -81,5 +86,17 @@ public class login extends ActionSupport implements SessionAware{
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
 	}
 }

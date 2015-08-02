@@ -55,7 +55,14 @@
 		<!--=====================================
 				/Top Fixed Navigation Menu END 
 		======================================-->
-	
+	<%
+	session = request.getSession(false);
+	if(session.getAttribute("level")!=null){
+		String level = session.getAttribute("level").toString();
+		if(level.equals("2")||level.equals("3")){	
+	%>
+	  <h2 class="h2" align="center"><button type="button" class="btn btn-primary btn-lg">Treffen erstellen</button></h2>
+	<%}}%>
 	
 	<div class="clear"></div>
 	<div id="container">

@@ -6,8 +6,17 @@ public class Article {
 	private String category;
 	private String content;
 	private int userID;
+	private int articleID;
 	
-	
+	public Article(){}
+	public Article(String title, String category, String content, int userID, String author, int articleID) {
+		this.title = title;
+		this.category = category;
+		this.content = content;
+		this.userID = userID;
+		this.author = author;
+		this.setArticleID(articleID);
+	}
 	public Article(String title, String category, String content, int userID, String author) {
 		this.title = title;
 		this.category = category;
@@ -50,5 +59,11 @@ public class Article {
 	}
 	public void setAuthor(String username) {
 		this.author = username;
+	}
+	public int getArticleID() {
+		return articleID;
+	}
+	public void setArticleID(int articleID) {
+		this.articleID = articleID;
 	}
 }

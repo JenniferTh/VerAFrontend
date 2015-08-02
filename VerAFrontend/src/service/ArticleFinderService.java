@@ -10,5 +10,8 @@ public class ArticleFinderService {
 	public List<Article> getArticle(){
 		return articles.getAllArticles();
 	}
+	public Article getArticle(int articleID){
+		return articles.getArticle(articleID);
+	}
 }
 

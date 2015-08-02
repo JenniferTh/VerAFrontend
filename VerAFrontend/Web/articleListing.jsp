@@ -1,7 +1,5 @@
-
-<%@page import="action.JoinMeeting"%>
 <%@page import="action.meetingListing"%>
-<%@page import="model.Treffen"%>
+<%@page import="model.Article"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="s"  uri="/struts-tags" %>
@@ -47,12 +45,21 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
-
+	
+	<%
+	session = request.getSession(false);
+	if(session.getAttribute("level")!=null){
+		String level = session.getAttribute("level").toString();
+		if(level.equals("2")||level.equals("3")){	
+	%>
+	  <h2 class="h2" align="center"><button type="button" class="btn btn-primary btn-lg">Beitrag erstellen</button></h2>
+	<%}}%>
 
 	<div class="clear"></div>
 	<div id="container">
-	<h2 class="h2">Beitrag</h2>
+	<h2 class="h2">Beiträge</h2>
 	<table class="table table-bordered table-hover">
+
 	  <thead>
 		  <tr>
 		    <th><h3>Thema</h3></th>
@@ -71,11 +78,13 @@
 				if(session.getAttribute("user")!=null){	
 				%>
 				<!-- Hier Verlinkung zur BeitragView einfügen -->
-				<td width="100px"><s:form action="" method="post">
-				<s:param name="" value="" />
+				<td width="100px"><s:form action="showArticle" method="post">
+				<s:param name="showArticle" value="articleID" />
 				<s:submit class="btn btn-primary" method="execute" value="Beitrag anzeigen" />
 				</s:form></td> 
-				<%}else{%>
+				<%
+				//session.setAttribute("articleID", articleID);
+				}else{%>
 				<td width="100px"><a class="btn btn-default" href="login.jsp" role="button">Bitte einloggen</a></td>
 				<%}%>
 			</tr>

@@ -25,5 +25,9 @@
 			<result name="success">/articleListing.jsp</result>
 			<result name="input">/articleListing.jsp</result>
 		</action>
+		<action name="showArticle" class="action.ArticleView">
+			<result name="success">/beitragView.jsp</result>
+			<result name="input">/beitragView</result>
+		</action>
 	</package>
 </struts>

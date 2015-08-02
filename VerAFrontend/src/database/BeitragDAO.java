@@ -18,9 +18,10 @@ public class BeitragDAO {
     PreparedStatement searchArticle;
     PreparedStatement getArticleFromUser;
     PreparedStatement getAllArticlesWithUsernames;
+    PreparedStatement getArticle;
     
 
-
+    String sqlGetArticle;
     String sqlCreateArticle;
     String sqlGetAllArticlesWithUsernames;
     String sqlDeleteArticle;
@@ -35,7 +36,8 @@ public class BeitragDAO {
 
     //TODO Beitrag editierbar machen
     private void createPreparedStatements(){
-        sqlCreateArticle = "INSERT INTO Beitrag(Titel, Kategorie, Inhalt) VALUES(?, ?, ?)";
+        sqlGetArticle = "SELECT * FROM dbwebanw_sose15_07.Beitrag where Beitrag_ID = ?";
+    	sqlCreateArticle = "INSERT INTO Beitrag(Titel, Kategorie, Inhalt) VALUES(?, ?, ?)";
         sqlDeleteArticle = "DELETE FROM Beitrag WHERE Beitrag_ID =?";
         sqlUpdateArticle = "UPDATE Beitrag SET Titel=?, Inhalt = ? where Beitrag_ID = ? ";
         sqlGetAllArticlesWithUsernames = "SELECT bt.Beitrag_ID, bt.Titel, bt.Kategorie, bt.Inhalt, bt.Erstellungsdatum, bt.Mitgliedsnummer, bn.Benutzername FROM dbwebanw_sose15_07.Beitrag AS bt JOIN Benutzer AS bn WHERE bt.Mitgliedsnummer = bn.Mitgliedsnummer Order by Beitrag_ID";
@@ -48,13 +50,42 @@ public class BeitragDAO {
             this.getAllArticlesWithUsernames= this.connection.prepareStatement(sqlGetAllArticlesWithUsernames);
             this.searchArticle = this.connection.prepareStatement(sqlSearchArticle);
             this.getArticleFromUser = this.connection.prepareStatement(sqlGetArticleFromUser);
+            this.getArticle = this.connection.prepareStatement("sqlGetArticle");
 
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
             e.printStackTrace();
         }
     }
+    
+    public Article getArticle(int articleID){
+    	ResultSet tempRS;
+    	Article article;
+    	String thema, info, kategorie, author;
+    	int userID;
+    	try {
+    		System.out.println("blubb");
+			getArticle.setInt(1, articleID);
+			tempRS = getArticle.executeQuery();
+			while(tempRS.next()){
+				thema= tempRS.getString(2);
+				info=tempRS.getString(4);
+				kategorie=tempRS.getString(3);
+				userID=tempRS.getInt(6);
+				author=tempRS.getString(7);
+				article = new Article(thema, kategorie, info, userID, author, articleID);
+				return article;
+			}
+			return null;
 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			article=null;
+			e.printStackTrace();
+			return article;
+		}
+    }
+    
     public void createArticle(String Titel, String Kategorie, String Inhalt){
         //TODO create method to enable the user to create an article with the desired title and content
 
@@ -147,17 +178,18 @@ public class BeitragDAO {
     	ResultSet tempRS;
     	List<Article> articleList = new ArrayList<Article>();
     	Article article;
-    	String thema; String info; String kategorie; String author;
-    	int userID;
+    	String thema, info, kategorie, author;
+    	int userID, articleID;
     	try {
 			tempRS = getAllArticlesWithUsernames.executeQuery();
 			while(tempRS.next()){
+				articleID = tempRS.getInt(1);
 				thema= tempRS.getString(2);
 				info=tempRS.getString(4);
 				kategorie=tempRS.getString(3);
 				userID=tempRS.getInt(6);
 				author=tempRS.getString(7);
-				article = new Article(thema, kategorie, info, userID, author);
+				article = new Article(thema, kategorie, info, userID, author, articleID);
 				articleList.add(article);
 			}
 			return articleList;
