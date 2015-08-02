@@ -77,7 +77,7 @@ public class UserDAO {
             this.loginStatement = this.connection.prepareStatement(sqlLogin);
             this.getUserStatement = this.connection.prepareStatement(sqlGetUser);
             this.searchUserStatement = this.connection.prepareStatement(sqlSearchUser);
-            this.searchUserStatement = this.connection.prepareStatement(sqlGetUserID);
+            //this.searchUserStatement = this.connection.prepareStatement(sqlGetUserID);
             this.getUserIDv2 = this.connection.prepareStatement(sqlGetUserIDv2);
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
