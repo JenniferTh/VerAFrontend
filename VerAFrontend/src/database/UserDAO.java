@@ -2,8 +2,7 @@ package database;
 
 import java.sql.*;
 
-import model.Treffen;
-import model.User;
+import model.*;
 
 /**
  * Created by Malte on 06.07.2015.
@@ -27,7 +26,7 @@ public class UserDAO {
 	PreparedStatement getUserIDv2;
 	PreparedStatement searchUserStatement;
 
-
+	
     //SQL Querys erstellen
     String sqlLogin;
     String sqlLogout;
@@ -230,13 +229,15 @@ public class UserDAO {
         int level = 0;
         try {
             getLevel.setInt(1, mitgliedsnummer);
-            getLevel.execute();
-
+            rs = getLevel.executeQuery();
+            while(rs.next()){
+            	level = rs.getInt(1);
+            }
+            return level;
         } catch (SQLException e) {
             System.out.println("Not able to get level ;____;");
         }
         return level;
-
     }
 
     //Die Methode ermöglicht das Setzen des Levels für einen bestimmten UserDAO
