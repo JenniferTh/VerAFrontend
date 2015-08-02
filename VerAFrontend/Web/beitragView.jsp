@@ -44,17 +44,53 @@
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
 		
+		<div class="clear"></div>
+		<div id="container">	
 		<s:iterator value ="article">
-			<table class="table">
-				<tr>
-					<td><s:property value="title"/></td>
-					<td><s:property value="category"/></td>
-				</tr>
-			</table>
+			<br><br>
+			<div id="content">
+				<div class="grid-row">	
+					<div class="grid-66">
+						<span id="vera-topic-1" class="h2">
+							<s:property value="title"/> 
+						</span>
+						<br><br>
+						<span id="vera-topic-1" class="h3">
+							<cite title="Source Title">in <s:property value="category"/></cite>
+						</span>
+					</div>
+				</div>
+			</div>	
+			<br><br>		
 			<blockquote>
 				<p><s:property value="content"/></p>
 				<footer><s:property value="author"/></footer>
 			</blockquote>
+			<br><br>
+			<h2>Kommentare</h2>
+			<br>
+			
+			<form action="postComment" method="POST">
+				<br>
+				<label>Kommentar:</label>
+		    	<textarea class="form-control" name="commentary" rows="3"></textarea>
+		     	<br>
+				<input class="btn btn-primary" type="submit" name="senden" value="Absenden">				
+				</form>	
+			
+			<br><br>
+			<table class="table table-bordered table-hover">
+				<s:iterator value="comments">
+					<tr>
+						<td><s:property value="author"/></td>
+						<td><s:property value="date"/></td>
+					</tr>
+					<tr>
+						<td><p><s:property value="comment"/></p><br><br></td>
+					</tr>
+				</s:iterator>
+			</table>
 		</s:iterator>
+		</div>
 </body>
 </html>

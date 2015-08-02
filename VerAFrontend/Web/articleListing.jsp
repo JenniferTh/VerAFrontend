@@ -76,14 +76,17 @@
 				<%
 				session = request.getSession(false);
 				if(session.getAttribute("user")!=null){	
-				%>
-				<!-- Hier Verlinkung zur BeitragView einfügen -->
-				<td width="100px"><s:form action="showArticle" method="post">
-				<s:param name="showArticle" value="articleID" />
-				<s:submit class="btn btn-primary" method="execute" value="Beitrag anzeigen" />
-				</s:form></td> 
+					int i = 1;
+				%>		
+				<td width="100px">
+					<s:form action="showArticle">
+						<s:property value="articleID"/>
+						<s:hidden name="artcID" value="articleID"/>
+						<s:submit class="btn btn-primary" value="Beitrag anzeigen" name="submit"/>
+					</s:form>
+				</td> 
 				<%
-				//session.setAttribute("articleID", articleID);
+				i++;
 				}else{%>
 				<td width="100px"><a class="btn btn-default" href="login.jsp" role="button">Bitte einloggen</a></td>
 				<%}%>

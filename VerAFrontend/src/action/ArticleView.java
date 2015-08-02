@@ -11,11 +11,15 @@ import service.ArticleFinderService;
 public class ArticleView extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = 1L;
 	private Article article = new Article();
-	private int articleID = 10;
+	private int artcID = 14;
+	private String grr;
 	private ArticleFinderService articleFinder = new ArticleFinderService();
 
 	public String execute(){
-		this.article = articleFinder.getArticle(10);
+		System.out.println("Hallo");
+		//artcID  = Integer.parseInt(grr);
+		System.out.println(artcID);
+		this.article = articleFinder.getArticle(14);
 		return SUCCESS;
 	}
 	
@@ -33,12 +37,12 @@ public class ArticleView extends ActionSupport implements SessionAware{
 		this.article = article;
 	}
 
-	public int getArticleID() {
-		return articleID;
+	public int getArtcID() {
+		return artcID;
 	}
 
-	public void setArticleID(int articleID) {
-		this.articleID = articleID;
+	public void setArtcID(int articleID) {
+		this.artcID = articleID;
 	}
 
 	public ArticleFinderService getArticleFinder() {
@@ -47,6 +51,14 @@ public class ArticleView extends ActionSupport implements SessionAware{
 
 	public void setArticleFinder(ArticleFinderService articleFinder) {
 		this.articleFinder = articleFinder;
+	}
+
+	public String getGrr() {
+		return grr;
+	}
+
+	public void setGrr(String grr) {
+		this.grr = grr;
 	}
 
 }

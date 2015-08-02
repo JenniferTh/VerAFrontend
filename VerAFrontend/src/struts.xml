@@ -27,7 +27,7 @@
 		</action>
 		<action name="showArticle" class="action.ArticleView">
 			<result name="success">/beitragView.jsp</result>
-			<result name="input">/beitragView</result>
+			<result name="input">/beitragView.jsp</result>
 		</action>
 	</package>
 </struts>

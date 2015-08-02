@@ -19,6 +19,7 @@ public class BeitragDAO {
     PreparedStatement getArticleFromUser;
     PreparedStatement getAllArticlesWithUsernames;
     PreparedStatement getArticle;
+    PreparedStatement getAllComments;
     
 
     String sqlGetArticle;
@@ -28,6 +29,7 @@ public class BeitragDAO {
     String sqlUpdateArticle;
     String sqlSearchArticle;
     String sqlGetArticleFromUser;
+    String sqlGetAllComments;
     
     public BeitragDAO(){
         connection = new DBConnection().getConnection();
@@ -36,13 +38,14 @@ public class BeitragDAO {
 
     //TODO Beitrag editierbar machen
     private void createPreparedStatements(){
-        sqlGetArticle = "SELECT * FROM dbwebanw_sose15_07.Beitrag where Beitrag_ID = ?";
+        sqlGetArticle = "SELECT b.*, u.Benutzername FROM dbwebanw_sose15_07.Beitrag AS b INNER JOIN Benutzer AS u ON b.Mitgliedsnummer = u.Mitgliedsnummer where b.Beitrag_ID = ?";
     	sqlCreateArticle = "INSERT INTO Beitrag(Titel, Kategorie, Inhalt) VALUES(?, ?, ?)";
         sqlDeleteArticle = "DELETE FROM Beitrag WHERE Beitrag_ID =?";
         sqlUpdateArticle = "UPDATE Beitrag SET Titel=?, Inhalt = ? where Beitrag_ID = ? ";
         sqlGetAllArticlesWithUsernames = "SELECT bt.Beitrag_ID, bt.Titel, bt.Kategorie, bt.Inhalt, bt.Erstellungsdatum, bt.Mitgliedsnummer, bn.Benutzername FROM dbwebanw_sose15_07.Beitrag AS bt JOIN Benutzer AS bn WHERE bt.Mitgliedsnummer = bn.Mitgliedsnummer Order by Beitrag_ID";
         sqlSearchArticle = "SELECT * FROM Beitrag where Beitrag.Titel like %?% or Beitrag.Titel = %?%";
         sqlGetArticleFromUser ="Select * FROM Beitrag WHERE Mitgliedsnummer =?";
+        sqlGetAllComments = "SELECT c.*, b.Benutzername FROM dbwebanw_sose15_07.Beitragskommentar as c INNER JOIN Benutzer as b ON c.Benutzer_Mitgliedsnummer = b.Mitgliedsnummer where Beitrag_ID = ? order by Erstellungsdatum DESC;";
         try {
             this.createArticle = this.connection.prepareStatement(sqlCreateArticle);
             this.deleteArticle = this.connection.prepareStatement(sqlDeleteArticle);
@@ -50,8 +53,8 @@ public class BeitragDAO {
             this.getAllArticlesWithUsernames= this.connection.prepareStatement(sqlGetAllArticlesWithUsernames);
             this.searchArticle = this.connection.prepareStatement(sqlSearchArticle);
             this.getArticleFromUser = this.connection.prepareStatement(sqlGetArticleFromUser);
-            this.getArticle = this.connection.prepareStatement("sqlGetArticle");
-
+            this.getArticle = this.connection.prepareStatement(sqlGetArticle);
+            this.getAllComments = this.connection.prepareStatement(sqlGetAllComments);
         } catch (SQLException e) {
             System.out.println("Error while creating prepared Statements");
             e.printStackTrace();
@@ -60,13 +63,16 @@ public class BeitragDAO {
     
     public Article getArticle(int articleID){
     	ResultSet tempRS;
-    	Article article;
-    	String thema, info, kategorie, author;
+    	ResultSet tempRS2;
+    	Article article = new Article();
+    	String thema, info, kategorie, author,date;
     	int userID;
     	try {
-    		System.out.println("blubb");
 			getArticle.setInt(1, articleID);
+			System.out.println("Hallo");
+			getAllComments.setInt(1, articleID);
 			tempRS = getArticle.executeQuery();
+			tempRS2 = getAllComments.executeQuery();
 			while(tempRS.next()){
 				thema= tempRS.getString(2);
 				info=tempRS.getString(4);
@@ -74,9 +80,14 @@ public class BeitragDAO {
 				userID=tempRS.getInt(6);
 				author=tempRS.getString(7);
 				article = new Article(thema, kategorie, info, userID, author, articleID);
-				return article;
 			}
-			return null;
+			while(tempRS2.next()){
+				info=tempRS2.getString(3);
+				author=tempRS2.getString(6);
+				date=tempRS2.getString(1);
+				article.insertComment(new Comment(date,author,info));
+			}
+			return article;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

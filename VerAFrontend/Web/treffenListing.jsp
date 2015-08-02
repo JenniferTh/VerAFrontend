@@ -95,8 +95,8 @@
 				%>
 				<td>
 					<s:form action="joinMeeting" method="post">
-						
-						<s:submit class="btn btn-primary" method="execute" value="Teilnehmen"><s:param name="meetingID" value="treffenID" /></s:submit>
+						<s:hidden name="meetingID" value="treffenID" />
+						<s:submit class="btn btn-primary" method="execute" value="Teilnehmen"></s:submit>
 					</s:form>
 				</td> 
 				<%}else{%>

@@ -1,5 +1,8 @@
 package model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Article {
 	private String author;
 	private String title;
@@ -7,6 +10,7 @@ public class Article {
 	private String content;
 	private int userID;
 	private int articleID;
+	private List<Comment> comments = new LinkedList<Comment>();
 	
 	public Article(){}
 	public Article(String title, String category, String content, int userID, String author, int articleID) {
@@ -65,5 +69,14 @@ public class Article {
 	}
 	public void setArticleID(int articleID) {
 		this.articleID = articleID;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	public void insertComment(Comment comment){
+		this.comments.add(comment);
 	}
 }
