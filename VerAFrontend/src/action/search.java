@@ -17,22 +17,20 @@ public class search {
 	private ResultSet resSet;
 	private String suchoption;
 	private SessionMap<String,Object> session;
-	private List<User> ul= new ArrayList<User>();
-	private List<Article> bl = new ArrayList<Article>();
+	private List<User> userList= new ArrayList<User>();
+	private List<Article> articleList = new ArrayList<Article>();
+	private BeitragDAO searchArticle = new BeitragDAO();
+	private UserDAO searchUser = new UserDAO();
 	
 	public String execute(){
 		if(term!=null){
-			BeitragDAO suche = new BeitragDAO();
-			UserDAO search = new UserDAO();
-			System.out.println(getTerm());
-			System.out.println(getSuchoption());
 			if(suchoption.equals("Beitrag")){
-				bl =suche.searchArticle(term);
-				return "beitrag";	
+				articleList =searchArticle.searchArticle(term);
+				return "article";	
 			}else if(suchoption.equals("User")){	
-				ul = search.searchUser(term);
-				System.out.println(ul.get(0).getUsername());
-				return "success";
+				userList = searchUser.searchUser(term);
+				System.out.println(userList.get(0).getUsername());
+				return "user";
 			}
 		}
 		return "fail";
@@ -74,67 +72,54 @@ public class search {
 		}
 	}
 
-
-	/**
-	 * @return the ul
-	 */
-	public List<User> getUl() {
-		return ul;
+	public List<User> getUserList() {
+		return userList;
 	}
 
-
-	/**
-	 * @param ul the ul to set
-	 */
-	public void setUl(List<User> ul) {
-		this.ul = ul;
+	public void setUserList(List<User> ul) {
+		this.userList = ul;
 	}
 
-
-	/**
-	 * @return the bl
-	 */
-	public List<Article> getBl() {
-		return bl;
+	public List<Article> getArticleList() {
+		return articleList;
 	}
 
-
-	/**
-	 * @param bl the bl to set
-	 */
-	public void setBl(List<Article> bl) {
-		this.bl = bl;
+	public void setArticleList(List<Article> bl) {
+		this.articleList = bl;
 	}
 
-
-	/**
-	 * @return the resSet
-	 */
 	public ResultSet getResSet() {
 		return resSet;
 	}
 
-
-	/**
-	 * @param resSet the resSet to set
-	 */
 	public void setResSet(ResultSet resSet) {
 		this.resSet = resSet;
 	}
-
-
-	/**
-	 * @return the session
-	 */
 	public SessionMap<String,Object> getSession() {
 		return session;
 	}
 
-
-	/**
-	 * @param session the session to set
-	 */
 	public void setSession(SessionMap<String,Object> session) {
 		this.session = session;
+	}
+
+
+	public BeitragDAO getSuche() {
+		return searchArticle;
+	}
+
+
+	public void setSuche(BeitragDAO suche) {
+		this.searchArticle = suche;
+	}
+
+
+	public UserDAO getSearch() {
+		return searchUser;
+	}
+
+
+	public void setSearch(UserDAO search) {
+		this.searchUser = search;
 	}
 }

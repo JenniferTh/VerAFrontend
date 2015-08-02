@@ -61,7 +61,7 @@
 		    <th><h3>E-Mail</h3></th>
 		  </tr>
 		  </thead>	
-		<s:iterator value="ul">
+		<s:iterator value="userList">
 			<tr>
 				<td><s:property value="username"/></td>
 				<td><s:property value="mailAdress"/></td> 

@@ -34,7 +34,7 @@
 						<%
 							}else{
 						%>
-						<li><s:a action="logout">Logout (<s:property value="#session['user']"/>)</s:a></li>	
+							<li><s:a action="logout">Logout (<s:property value="#session['user']"/>)</s:a></li>	
 						<%
 							}
 						%>
@@ -44,57 +44,31 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
-	<%
-	session = request.getSession(false);
-	if(session.getAttribute("level")!=null){
-		String level = session.getAttribute("level").toString();
-		if(level.equals("2")||level.equals("3")){	
-	%>
+	
+	
+			<div class="clear"></div>
+		<div id="container">	
 
-
-
-	<%}}%>
 
 	<div class="clear"></div>
 	<div id="container">
-
-		  <a href="bsuccess.jsp">Beitrag erstellen</a>
-		  <br>
-	<h2 class="h2">Beiträge</h2>
+	<h2 class="h2">Suchergebnisse</h2>
 	<table class="table table-bordered table-hover">
 
 	  <thead>
 		  <tr>
 		    <th><h3>Thema</h3></th>
 		    <th><h3>Kategorie</h3></th>
-		    <th><h3>Autor</h3></th>
-		    <th><h3>Mehr</h3></th>
 		  </tr>
 		  </thead>
-		<s:iterator value="articles" var="article">
+		<s:iterator value="articleList">
 			<tr>
 				<td><s:property value="title"/></td>
 				<td><s:property value="category"/></td>
-				<td><s:property value="author"/></td> 
-				<%
-				session = request.getSession(false);
-				if(session.getAttribute("user")!=null){	
-				%>		
-				<td width="100px">
-					<s:form action="showArticle">
-						ID:<s:property value="articleID"/>
-						<s:textfield class="form-control" name="artcID" rows="1" placeholder="ID"></s:textfield>						
-						<s:submit class="btn btn-primary" value="Anzeigen" name="submit"/>
-					</s:form>
-				</td> 
-				<%
-				}else{%>
-				<td width="100px"><a class="btn btn-default" href="login.jsp" role="button">Bitte einloggen</a></td>
-				<%}%>
 			</tr>
 		</s:iterator>
 	</table>
-					
+	</div>			
 	</div>
 </body>
 </html>

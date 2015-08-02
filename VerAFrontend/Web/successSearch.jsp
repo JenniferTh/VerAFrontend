@@ -46,6 +46,9 @@
 		</div><!-- #menu_div END-->
 		<div class="clear"></div>
 		<div id="container">	
+		<br>
+		<h2>Suche</h2>
+		<br><br>
 <form action="search" method="POST"> 
 		<s:select 
        	name="Suchoption"
@@ -55,7 +58,7 @@
        	required="true"
 		/>
 		<s:textfield type="term" name = "term"></s:textfield>
-		<input type="submit" name="suche" value="Suche">
+		<input class="btn btn-default" type="submit" name="suche" value="Suche">
 </form>
 	
 <hr><br>	

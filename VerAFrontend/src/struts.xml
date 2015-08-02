@@ -34,7 +34,8 @@
 			<result name="input">/index.jsp</result>
 		</action>
 		<action name="search" class="action.search">	
-			<result name="success">/searchResult.jsp</result>
+			<result name="user">/searchResult.jsp</result>
+			<result name="article">/searchResultArticle.jsp</result>
 			<result name="fail">/successSearch.jsp</result>
 		</action>
 		

@@ -10,10 +10,12 @@
 <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen" />
 
-<title>Index</title>
+<title>Login</title>
 </head>
 <body>
-
+		<!--=====================================
+				Top Fixed Navigation Menu BEGIN
+		======================================-->
 		<div id="menu_div">
 			<div id="navigation">
 				<div id="menu">
@@ -34,7 +36,7 @@
 						<%
 							}else{
 						%>
-						<li><s:a action="logout">Logout (<s:property value="#session['user']"/>)</s:a></li>	
+							<li><s:a action="logout">Logout (<s:property value="#session['user']"/>)</s:a></li>	
 						<%
 							}
 						%>
@@ -44,6 +46,9 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
+		<!--=====================================
+				/Top Fixed Navigation Menu END 
+		======================================-->
 	<div class="clear"></div>
 	<div id="container" align="center">
 		<h2><s:property value = "infoMessage"/></h2>
@@ -52,7 +57,8 @@
 		if(session.getAttribute("user")==null){	
 		%>
 		<s:form action="login" method = "post">
-			<label class="h3">Login</label>
+			<label class="h2">Login</label>
+			<br></br>
 			<div class="form-group">
 			<s:textfield class="form-control" name="username" label= "Benutzername" placeholder="Benutzername"></s:textfield>
 			</div>
