@@ -1,6 +1,8 @@
 package database;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.User;
 
@@ -59,7 +61,7 @@ public class UserDAO {
         sqlSetLevel = "UPDATE Benutzer SET Level= ? where Mitgliedsnummer= ?";
         sqlDeleteUser = "DELETE FROM Benutzer where Mitgliedsnummer= ?";
         sqlGetUser = "SELECT * FROM dbwebanw_sose15_07.Benutzer where Benutzer.Mitgliedsnummer = ?";
-        sqlSearchUser = "SELECT * FROM Benutzer where Benutzer.Benutzername like %?%";
+        sqlSearchUser = "SELECT * FROM Benutzer where Benutzer.Benutzername like ?";
         try {
             this.createUser = this.connection.prepareStatement(sqlCreateNewUser);
             this.logout = this.connection.prepareStatement(sqlLogout);
@@ -218,17 +220,28 @@ public class UserDAO {
         }
     }
     
-    public ResultSet searchUser(String term){
-		ResultSet resSet;
+    public List<User> searchUser(String term){
+		List<User> userlist = new ArrayList<User>();
+		String username;
+		String mailadress;
+		int level;
 		try {
-			searchUserStatement.setString(1, term);
-			resSet = searchUserStatement.executeQuery();
-    		return resSet;
+			searchUserStatement.setString(1, "%" + term + "%");
+			rs = searchUserStatement.executeQuery();
+			
+			while(rs.next()){
+				username = rs.getString(2);
+				mailadress = rs.getString(3);
+				level = rs.getInt(4);
+				
+				userlist.add(new User(username, mailadress, level));
+			}
+    		return userlist;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			resSet = null;
-			return resSet;
+			userlist = null;
+			return userlist;
 		}
 	}
 

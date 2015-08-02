@@ -26,7 +26,7 @@
 		<br />
 		<input type="submit" name="hauptseite_enter" value="Zur Hauptseite">
 </form>	
-<form action="bEdit" method="post">
+<form action="bEditView.jsp" method="post">
 		<input type="submit" name="editieren" value="Editieren">
 </form>
 <label>Antworten: </label>

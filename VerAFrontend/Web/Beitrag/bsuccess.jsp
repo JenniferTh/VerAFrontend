@@ -32,7 +32,7 @@
      
 		<br />
 		
-		<input type="submit" name="senden" value="Absenden">
+		<input type="submit" class="btn btn-primary" name="senden" value="Absenden">
 		<input type="submit" name="abbrechen" value="Abbrechen">
 		
 	</form>	

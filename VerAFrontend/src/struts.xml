@@ -17,17 +17,18 @@
 		</action>
 		
 		<action name="bEdit" class="action.bEdit">
-			<result name="eSuccess">/Beitrag/bEditView.jsp</result>
+			<result name="success">/Beitrag/beitragView.jsp</result>
 		</action>
 		
 		<action name="tCreate" class="action.tCreate">		
 			<result name="success">index.jsp</result>
 		</action>
 		
-		<action name = "login" class = "action.login">
-			<result name ="success">/Login/successLogin.jsp</result>
-			<result name ="error">/Login/login.jsp</result>
-		</action>
+		<action name="showResults" class="action.">
+			<result name="success">/Suche/searchResult.jsp</result>
+			<result name="input">/beitragView</result>
+		</action>	
+		
 		
 	</package>
 	

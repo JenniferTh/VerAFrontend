@@ -21,7 +21,7 @@ public class bEdit extends ActionSupport implements SessionAware, ParameterAware
 	
 	public String execute(){
 		
-		//BeitragDAO edit = new BeitragDAO();
+		BeitragDAO edit = new BeitragDAO();
 		System.out.println(getBID());
 		this.titel = this.param.get("titel")[0];
 		System.out.println(titel);
@@ -29,11 +29,12 @@ public class bEdit extends ActionSupport implements SessionAware, ParameterAware
 		System.out.println(kategorie);
 		this.inhalt = this.param.get("inhalt")[0];
 		System.out.println(inhalt);
+		edit.updateArticle(bid, titel, kategorie, inhalt);
 		session.put("BID", this.bid);
 		session.put("Titel", this.titel);
 		session.put("Kategorie", kategorie);
 		session.put("Text", this.inhalt);
-		return "eSuccess";
+		return "success";
 	}
 	
 	public Map getParameters(){

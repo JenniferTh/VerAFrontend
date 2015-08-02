@@ -12,14 +12,19 @@
 		session=request.getSession(false);
 		if(session.getAttribute("Titel")!=null){
 	%>
-	<h1>Titel: <s:property value="titel" /></h1>
-	<s:textfield type="kategorie" name ="kategorie" value="kategorie"></s:textfield> <br />
-	<s:textarea type="inhalt" name ="inhalt" rows="10" cols="50" value="inhalt"></s:textarea>
+	<form action="bEdit" method="post">
+	<input type="hidden" name="bid" value=bid>
+	<label>Beitragstitel: </label>
+			<s:textfield type="titel" name = "titel" value=titel></s:textfield>
+		<br><br>
+		<h1>Kategorie: <s:property value="kategorie" /></h1>
+		<s:textarea type="inhalt" name="inhalt" value=inhalt />
 	<%
 		}else{
-			
-			response.sendRedirect("beitragView.jsp");
+			response.sendRedirect("beitragsView.jsp");
 		}
-		%>
+	%>
+	<input type="submit" name="editieren" value="Editieren">
+	</form>
 </body>
 </html>
