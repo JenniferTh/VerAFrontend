@@ -2,32 +2,29 @@ package action;
 
 import org.apache.struts2.interceptor.ParameterAware;
 import org.apache.struts2.interceptor.SessionAware;
-
 import java.sql.Date;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
-
-import database.BeitragDAO;
 import database.MeetingDAO;
-
 import org.apache.struts2.dispatcher.SessionMap;
-
 import com.opensymphony.xwork2.ActionSupport;
-
+import model.Treffen;
 
 public class tCreate extends ActionSupport implements SessionAware, ParameterAware {
 
 	private static final long serialVersionUID = 1L;
 	private String thema;
 	private String ort;
-	private int abt_l_ID;
+	private String uhrzeit;
 	private int maxT;
 	private String kategorie;
 	private Date datum;
+	private String date;
 	private String info;
+	private Treffen treffen;
 	private SessionMap<String,Object> session;
 	private Map<String, String[]> param = new HashMap<String, String[]>();
 	
@@ -37,18 +34,13 @@ public class tCreate extends ActionSupport implements SessionAware, ParameterAwa
 		this.kategorie = this.param.get("kategorie")[0];
 		System.out.println(kategorie);
 		System.out.println(getOrt());
-		System.out.println(getAbt_l_ID());
+		System.out.println(getUhrzeit());
 		System.out.println(getMaxT());
-		System.out.println(getDatum());
+		System.out.println(date);
+		date=date.substring(6, 10)+date.substring(2, 6)+date.substring(0, 2);
+		System.out.println(date);
 		System.out.println(getInfo());
-		//meeting.createMeeting(thema, ort, abt_l_ID, maxT, kategorie, datum, info);
-		session.put("Thema", this.thema);
-		session.put("Ort", this.ort);
-		session.put("Abteilungsleiter ID", this.abt_l_ID);
-		session.put("MaxT", this.maxT);
-		session.put("Kategorie", this.kategorie);
-		session.put("Datum", this.datum);
-		session.put("Info", this.info);
+		meeting.createMeeting(thema, info, kategorie, ort, date, uhrzeit, maxT);
 		return SUCCESS;
 	}
 
@@ -68,12 +60,12 @@ public class tCreate extends ActionSupport implements SessionAware, ParameterAwa
 		this.ort = ort;
 	}
 
-	public int getAbt_l_ID() {
-		return 1234;
+	public String getUhrzeit() {
+		return uhrzeit;
 	}
 
-	public void setAbt_l_ID(int abt_l_ID) {
-		this.abt_l_ID = 1234;
+	public void setUhrzeit(String uhrzeit) {
+		this.uhrzeit = uhrzeit;
 	}
 
 	public int getMaxT() {
@@ -92,14 +84,14 @@ public class tCreate extends ActionSupport implements SessionAware, ParameterAwa
 		this.kategorie = kategorie;
 	}
 
-	public Date getDatum() {
-		java.util.Date utilDate = new java.util.Date();
-	    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-	    this.datum=sqlDate;
-		return datum;
+	public String getDatum() {
+		Format formatter = new SimpleDateFormat("dd-MM-yyy");
+		String date = formatter.format(datum);
+		return date;
 	}
 
-	public void setDatum(Date datum) {
+	public void setDatum(String date) {
+		this.date=date;
 	}
 
 	public String getInfo() {

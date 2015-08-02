@@ -32,25 +32,11 @@
 		<br><br>
 
 
-		<label>Datum: </label>
-		<form>
-    	Bitte Datum/Uhrzeit eingeben: <input type="datetime" name="geburtsdatum" placeholder="1998-12-24T16:39:57-08:00">
-  		</form>
- 
-		<s:select label="Uhrzeit"
-       	name="uhr_h"
-       	headerKey="-1" headerValue="Stunde"
-       	list="#{'0': '0', '1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'6', '7':'7', '8':'8', '9':'9', '10':'10', '11':'11', '12':'12', '13':'13', '14':'14', '15':'15', '16':'16', '17':'17', '18':'18', '19':'19', '20':'20', '21':'21', '22':'22', '23':'23'}"
-       	value="hour"
-       	required="true"
-		/>
-		<s:select label=""
-       	name="uhr_min"
-       	headerKey="-1" headerValue="Minute"
-       	list="#{'00': '00', '15':'15', '30':'30', '45':'45', '37':'37'}"
-       	value="minute"
-       	required="true"
-		/>	
+    	<label>Datum: </label>: <input type="date" name="datum" placeholder="03-08-2015">
+  		
+ 		<label>Uhrzeit: </label>
+		<s:textfield type="text" name = "uhrzeit" placeholder="14:30"></s:textfield>
+		
 		<br />
 		
 		<label>Info: </label>
