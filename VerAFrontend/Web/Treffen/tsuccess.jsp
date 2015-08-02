@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="/struts-tags" prefix="s" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib uri="/struts-tags" prefix="s" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -33,8 +33,9 @@
 
 
 		<label>Datum: </label>
-		<script>DateInput('todaydate', true, 'MON-DD-YYYY');</script>
-		<br>
+		<form>
+    	Bitte Datum/Uhrzeit eingeben: <input type="datetime" name="geburtsdatum" placeholder="1998-12-24T16:39:57-08:00">
+  		</form>
  
 		<s:select label="Uhrzeit"
        	name="uhr_h"
