@@ -44,27 +44,21 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
-	<div class="clear"></div>
-	<div id="container" align="center">
-		<h2><s:property value = "infoMessage"/></h2>
-		<%
-		session = request.getSession(false);
-		if(session.getAttribute("user")==null){	
-		%>
-		<s:form action="login" method = "post">
-			<label class="h3">Login</label>
-			<div class="form-group">
-			<s:textfield class="form-control" name="username" label= "Benutzername" placeholder="Benutzername"></s:textfield>
-			</div>
-			<div class="form-group">
-			<s:textfield class="form-control" type = "password" name="password" label= "Passwort" placeholder="Passwort"></s:textfield>
-			</div>
-			<s:submit value = "login" class="btn btn-default"></s:submit>
-		</s:form>
-		<%}else{%>	
-		Du Bist bereits eingeloggt<br>
-		<a href="index.jsp">Hier</a> geht es zurück zum Index
-		<%}%>
-	</div>	
+		<div class="clear"></div>
+		<div id="container">	
+<form action="search" method="POST"> 
+		<s:select 
+       	name="Suchoption"
+       	headerKey="-1" headerValue="Bitte Such-Option wählen"
+       	list="#{'User': 'User', 'Beitrag':'Beitrag'}"
+       	value="suchoption"
+       	required="true"
+		/>
+		<s:textfield type="term" name = "term"></s:textfield>
+		<input type="submit" name="suche" value="Suche">
+</form>
+	
+<hr><br>	
+</div>
 </body>
 </html>

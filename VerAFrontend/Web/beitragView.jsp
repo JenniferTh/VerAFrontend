@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="s"  uri="/struts-tags" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,7 +24,7 @@
 						
 						<li><a href="meetingListing.action">Treffen</a></li>
 						
-						<li><a href="#">Suche</a></li>
+						<li><a href="successSearch.jsp">Suche</a></li>
 
 						<%
 							session = request.getSession(false);
@@ -39,6 +38,8 @@
 						<%
 							}
 						%>
+						
+							
 					</ul><!-- #nav END-->					 
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->

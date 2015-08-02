@@ -44,27 +44,31 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
+	
+	
+			<div class="clear"></div>
+		<div id="container">	
+
+
 	<div class="clear"></div>
-	<div id="container" align="center">
-		<h2><s:property value = "infoMessage"/></h2>
-		<%
-		session = request.getSession(false);
-		if(session.getAttribute("user")==null){	
-		%>
-		<s:form action="login" method = "post">
-			<label class="h3">Login</label>
-			<div class="form-group">
-			<s:textfield class="form-control" name="username" label= "Benutzername" placeholder="Benutzername"></s:textfield>
-			</div>
-			<div class="form-group">
-			<s:textfield class="form-control" type = "password" name="password" label= "Passwort" placeholder="Passwort"></s:textfield>
-			</div>
-			<s:submit value = "login" class="btn btn-default"></s:submit>
-		</s:form>
-		<%}else{%>	
-		Du Bist bereits eingeloggt<br>
-		<a href="index.jsp">Hier</a> geht es zurück zum Index
-		<%}%>
-	</div>	
+	<div id="container">
+	<h2 class="h2">Suchergebnisse</h2>
+	<table class="table table-bordered table-hover">
+
+	  <thead>
+		  <tr>
+		    <th><h3>User</h3></th>
+		    <th><h3>E-Mail</h3></th>
+		  </tr>
+		  </thead>	
+		<s:iterator value="ul">
+			<tr>
+				<td><s:property value="username"/></td>
+				<td><s:property value="mailAdress"/></td> 
+			</tr>
+		</s:iterator>
+	</table>
+		</div>			
+	</div>
 </body>
 </html>

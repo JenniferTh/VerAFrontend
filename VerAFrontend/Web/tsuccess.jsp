@@ -44,27 +44,49 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
-	<div class="clear"></div>
-	<div id="container" align="center">
-		<h2><s:property value = "infoMessage"/></h2>
-		<%
-		session = request.getSession(false);
-		if(session.getAttribute("user")==null){	
-		%>
-		<s:form action="login" method = "post">
-			<label class="h3">Login</label>
-			<div class="form-group">
-			<s:textfield class="form-control" name="username" label= "Benutzername" placeholder="Benutzername"></s:textfield>
-			</div>
-			<div class="form-group">
-			<s:textfield class="form-control" type = "password" name="password" label= "Passwort" placeholder="Passwort"></s:textfield>
-			</div>
-			<s:submit value = "login" class="btn btn-default"></s:submit>
-		</s:form>
-		<%}else{%>	
-		Du Bist bereits eingeloggt<br>
-		<a href="index.jsp">Hier</a> geht es zurück zum Index
-		<%}%>
-	</div>	
+		
+			<div class="clear"></div>
+		<div id="container">	
+	<form action="tCreate" method="POST">
+		<br>
+		<label>Thema: </label>
+		<s:textfield class="form-control" type="text" name = "thema"></s:textfield>
+		<br><br>
+
+		<label>Max. Teilnehmerzahl: </label>
+		<s:textfield class="form-control" type="number" name = "maxT"></s:textfield>
+		<br><br>
+
+		<s:select label="Kategorie"
+       	name="kategorie"
+       	headerKey="-1" headerValue="Bitte Kategorie wählen"
+       	list="#{'Judo': 'Judo', 'Handball':'Handball', 'Einrad':'Einrad', 'Fussball':'Fussball', 'Tennis':'Tennis'}"
+       	value="kategorie"
+       	required="true"
+		/>
+		<br>
+
+		<label>Ort: </label>
+		<s:textfield class="form-control" type="text" name = "ort"></s:textfield>	
+		<br><br>
+
+
+    	<label>Datum: </label>: <input type="date" name="datum" placeholder="03-08-2015">
+  		
+ 		<label>Uhrzeit: </label>
+		<s:textfield class="form-control" type="text" name = "uhrzeit" placeholder="14:30"></s:textfield>
+		
+		<br />
+		
+		<label>Info: </label>
+		<br />
+		<s:textarea class="form-control" type="text" name = "Info" rows="10" cols="50"></s:textarea>
+		<br ><br >
+		
+		<input class="btn btn-default" type="submit" name="senden" value="Absenden">
+		<input class="btn btn-default" type="submit" name="abbrechen" value="Abbrechen">
+		
+	</form>	
+</div>
 </body>
 </html>

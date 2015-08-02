@@ -30,6 +30,8 @@ public class BeitragDAO {
     String sqlSearchArticle;
     String sqlGetArticleFromUser;
     String sqlGetAllComments;
+    ResultSet rs;
+
     
     public BeitragDAO(){
         connection = new DBConnection().getConnection();
@@ -43,7 +45,7 @@ public class BeitragDAO {
         sqlDeleteArticle = "DELETE FROM Beitrag WHERE Beitrag_ID =?";
         sqlUpdateArticle = "UPDATE Beitrag SET Titel=?, Inhalt = ? where Beitrag_ID = ? ";
         sqlGetAllArticlesWithUsernames = "SELECT bt.Beitrag_ID, bt.Titel, bt.Kategorie, bt.Inhalt, bt.Erstellungsdatum, bt.Mitgliedsnummer, bn.Benutzername FROM dbwebanw_sose15_07.Beitrag AS bt JOIN Benutzer AS bn WHERE bt.Mitgliedsnummer = bn.Mitgliedsnummer Order by Beitrag_ID";
-        sqlSearchArticle = "SELECT * FROM Beitrag where Beitrag.Titel like %?% or Beitrag.Titel = %?%";
+        sqlSearchArticle = "SELECT * FROM Beitrag where Beitrag.Titel like ?";
         sqlGetArticleFromUser ="Select * FROM Beitrag WHERE Mitgliedsnummer =?";
         sqlGetAllComments = "SELECT c.*, b.Benutzername FROM dbwebanw_sose15_07.Beitragskommentar as c INNER JOIN Benutzer as b ON c.Benutzer_Mitgliedsnummer = b.Mitgliedsnummer where Beitrag_ID = ? order by Erstellungsdatum DESC;";
         try {
@@ -123,12 +125,13 @@ public class BeitragDAO {
     }
 
 
-    public void updateArticle(String Titel, String Inhalt,int Mitgliedsnummer){
+    public void updateArticle(int Beitrags_ID, String Titel, String Kategorie, String Inhalt){
 
         try {
+        	updateArticle.setInt(1, Beitrags_ID);
             updateArticle.setString(1, Titel);
-            updateArticle.setString(2, Inhalt);
-            updateArticle.setInt(3, Mitgliedsnummer);
+            updateArticle.setString(2, Kategorie);
+            updateArticle.setString(3, Inhalt);
             updateArticle.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,31 +139,30 @@ public class BeitragDAO {
     }
     
     public List<Article> searchArticle(String term){
-    	ResultSet articleRS;
-		List<Article> articleList = new ArrayList<Article>();
-
-    	
+    	List<Article> beitraglist = new ArrayList<Article>();
+    	String titel;
+    	String kategorie;
     	try {
-        	searchArticle.setString(1, term);
-    		searchArticle.setString(2, term);
-    		articleRS = searchArticle.executeQuery();
+        	searchArticle.setString(1, "%" + term + "%");
+    		rs = searchArticle.executeQuery();
     		
-			while(articleRS.next()){
-				String title = articleRS.getString(2);
-				String category = articleRS.getString(3);
-				String content= articleRS.getString(4);
-				int userID  = articleRS.getInt(6);
-				articleList.add(new Article(title, category, content, userID));
+    		while(rs.next()){
+				titel = rs.getString(2);
+				kategorie = rs.getString(3);
+				
+				beitraglist.add(new Article(titel, kategorie));
 			}
     		
-    		return articleList;
+    		return beitraglist;
     		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			beitraglist = null;
+			return beitraglist;
 		}
     }
+    
     
     public List<Article> getArticleFromUser(int mitgliedsnummer){
     	try {

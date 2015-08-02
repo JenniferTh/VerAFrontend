@@ -38,6 +38,10 @@ public class Article {
 		this.userID = userID;
 		this.sArticleID = Integer.toString(articleID);
 	}
+	public Article(String title, String category) {
+		this.title = title;
+		this.category = category;
+	}
 	public String getTitle() {
 		return title;
 	}

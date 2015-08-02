@@ -33,5 +33,22 @@
 			<result name="success">/index.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>
+		<action name="search" class="action.search">	
+			<result name="success">/searchResult.jsp</result>
+			<result name="fail">/successSearch.jsp</result>
+		</action>
+		
+		<action name="bCreate" class="action.bCreate">		
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="bEdit" class="action.bEdit">
+			<result name="success">/beitragView.jsp</result>
+		</action>
+		
+		<action name="tCreate" class="action.tCreate">		
+			<result name="success">/index.jsp</result>
+		</action>
+
 	</package>
 </struts>

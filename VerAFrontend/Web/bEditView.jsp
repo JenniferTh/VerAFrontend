@@ -44,19 +44,27 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
-	<div id="wrapper-inner" style="position:relative;">
-		<div class="wrapper-padding">
-			<br></br>
-			<div id="content">
-				<div class="grid-row">	
-					<div class="grid-90">
-						<span id="vera-topic-1" class="h2">
-							Du nimmst erfolgreich an dem Treffen teil
-						</span>
-					</div>
-				</div>
-			</div>	
-		</div>
+	
+			<div class="clear"></div>
+		<div id="container">	
+	<%
+		session=request.getSession(false);
+		if(session.getAttribute("Titel")!=null){
+	%>
+	<form action="bEdit" method="post">
+	<input type="hidden" name="bid" value=bid>
+	<label>Beitragstitel: </label>
+			<s:textfield class="form-control" type="titel" name = "titel" value=titel></s:textfield>
+		<br><br>
+		<h1>Kategorie: <s:property value="kategorie" /></h1>
+		<s:textarea class="form-control" type="inhalt" name="inhalt" value=inhalt />
+	<%
+		}else{
+			response.sendRedirect("beitragsView.jsp");
+		}
+	%>
+	<input class="btn btn-default" type="submit" name="editieren" value="Editieren">
+	</form>
 	</div>
 </body>
 </html>

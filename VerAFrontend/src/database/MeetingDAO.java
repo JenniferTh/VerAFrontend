@@ -65,14 +65,14 @@ public class MeetingDAO {
         }
     }
 
-    public boolean createMeeting(String thema, String info, String kategorie, String ort, Date datum ,String uhrzeit, int maxTeilnehmer) {
+    public boolean createMeeting(String thema, String info, String kategorie, String ort, String datum ,String uhrzeit, int maxTeilnehmer) {
         try {
 
             createMeeting.setString(1, thema);
             createMeeting.setString(2, info);
             createMeeting.setString(3, kategorie);
             createMeeting.setString(4, ort);
-            createMeeting.setDate(5, datum);
+            createMeeting.setString(5, datum);
             createMeeting.setString(6, uhrzeit);
             createMeeting.setInt(7, maxTeilnehmer);
             createMeeting.executeUpdate();

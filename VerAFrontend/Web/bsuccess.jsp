@@ -44,27 +44,37 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
-	<div class="clear"></div>
-	<div id="container" align="center">
-		<h2><s:property value = "infoMessage"/></h2>
-		<%
-		session = request.getSession(false);
-		if(session.getAttribute("user")==null){	
-		%>
-		<s:form action="login" method = "post">
-			<label class="h3">Login</label>
-			<div class="form-group">
-			<s:textfield class="form-control" name="username" label= "Benutzername" placeholder="Benutzername"></s:textfield>
-			</div>
-			<div class="form-group">
-			<s:textfield class="form-control" type = "password" name="password" label= "Passwort" placeholder="Passwort"></s:textfield>
-			</div>
-			<s:submit value = "login" class="btn btn-default"></s:submit>
-		</s:form>
-		<%}else{%>	
-		Du Bist bereits eingeloggt<br>
-		<a href="index.jsp">Hier</a> geht es zurück zum Index
-		<%}%>
-	</div>	
+		
+				<div class="clear"></div>
+		<div id="container">	
+	<form action="bCreate" method="POST">
+		<br>
+		<label>Beitragstitel: </label>
+		<br>
+			<s:textfield class="form-control" type="titel" name = "titel"></s:textfield>
+		<br>
+
+	
+		<s:select label="Kategorie"
+       	name="kategorie"
+       	headerKey="-1" headerValue="Bitte Kategorie wählen"
+       	list="#{'Judo': 'Judo', 'Handball':'Handball', 'Einrad':'Einrad', 'Fussball':'Fussball', 'Tennis':'Tennis'}"
+       	value="kategorie"
+       	required="true"
+		/>
+
+		<br>
+
+		<label>Inhalt: </label>
+			<br />
+    		<textarea class="form-control" name="inhalt" rows="10" cols="50"></textarea>
+     
+		<br />
+		
+		<input class="btn btn-default" type="submit" class="btn btn-primary" name="senden" value="Absenden">
+		<input class="btn btn-default" type="submit" name="abbrechen" value="Abbrechen">
+		
+	</form>	
+</div>
 </body>
 </html>

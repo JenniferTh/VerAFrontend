@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="s"  uri="/struts-tags" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,9 +18,6 @@
 </head>
 <body>
 
-		<!--=====================================
-				Top Fixed Navigation Menu BEGIN
-		======================================-->
 		<div id="menu_div">
 			<div id="navigation">
 				<div id="menu">
@@ -32,7 +28,7 @@
 						
 						<li><a href="meetingListing.action">Treffen</a></li>
 						
-						<li><a href="#">Suche</a></li>
+						<li><a href="successSearch.jsp">Suche</a></li>
 
 						<%
 							session = request.getSession(false);
@@ -52,20 +48,19 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
-		<!--=====================================
-				/Top Fixed Navigation Menu END 
-		======================================-->
-	<%
+
+
+	
+	<div class="clear"></div>
+	<div id="container">
+		<%
 	session = request.getSession(false);
 	if(session.getAttribute("level")!=null){
 		String level = session.getAttribute("level").toString();
 		if(level.equals("2")||level.equals("3")){	
 	%>
-	  <h2 class="h2" align="center"><button type="button" class="btn btn-primary btn-lg">Treffen erstellen</button></h2>
-	<%}}%>
-	
-	<div class="clear"></div>
-	<div id="container">
+<a href="tsuccess.jsp">Treffen erstellen</a>
+		  <br>	<%}}%>
 		<h2 class="h2">Treffen</h2>
 		<table class="table table-bordered table-hover">
 		  <thead>

@@ -14,9 +14,6 @@
 </head>
 <body>
 
-		<!--=====================================
-				Top Fixed Navigation Menu BEGIN
-		======================================-->
 		<div id="menu_div">
 			<div id="navigation">
 				<div id="menu">
@@ -27,7 +24,7 @@
 						
 						<li><a href="meetingListing.action">Treffen</a></li>
 						
-						<li><a href="#">Suche</a></li>
+						<li><a href="successSearch.jsp">Suche</a></li>
 
 						<%
 							session = request.getSession(false);
@@ -47,12 +44,10 @@
 				</div><!-- #menu END-->
 			</div><!-- #navigation END-->
 		</div><!-- #menu_div END-->
-		<!--=====================================
-				/Top Fixed Navigation Menu END 
-		======================================-->
-	<div id="wrapper-inner" style="position:relative;">
-		<div class="wrapper-padding">
-		<br></br>
+
+		<div class="clear"></div>
+		<div id="container">	
+			<br></br>
 			<%
 				session = request.getSession(false);
 				if(session.getAttribute("user")!=null){	
@@ -67,28 +62,6 @@
 			%>
 			<br></br>
 			<br></br>
-			<!-- <dl class="dl-horizontal">
-			  <dt>...</dt>
-			  <dd>...</dd>
-			</dl>
-			Vielleicht für Anzeige Beiträge: Titel (mit Link) und Inhalt 
-			Bootstrap Horizontal discription
-			 -->
-			<div id="content">
-				<div class="grid-row">	
-					<div class="grid-66">
-						<span id="vera-topic-1" class="h2">
-							Neue Beiträge
-						</span>
-					</div>
-					<div class="grid-33">
-						<span id="vera-topic-1" class="h2">
-							Aktuelle Treffen
-						</span>
-					</div>
-				</div>
-			</div>	
 		</div>
-	</div>	
 </body>
 </html>
