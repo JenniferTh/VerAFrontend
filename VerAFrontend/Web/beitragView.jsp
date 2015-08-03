@@ -46,7 +46,7 @@
 		</div><!-- #menu_div END-->
 		
 		<div class="clear"></div>
-		<div id="container">	
+		<div id="container" >	
 		<s:iterator value ="article">
 			<br><br>
 			<div id="content">
@@ -76,9 +76,10 @@
 				<label>Kommentar:</label>
 		    	<textarea class="form-control" name="commentary" rows="3"></textarea>
 		     	<br>
-				<p>A:<s:property value="artcID"/>&nbspB:<s:property value="#session['userID']"/></p>
-				<s:textfield class="form-control" name="articleID" rows="1" placeholder="A"></s:textfield>
-				<s:textfield class="form-control" name="mitgliedsnummer" rows="1" placeholder="B" ></s:textfield>							
+				<p>ID:<s:property value="#session['userID']"/></p>
+				<s:hidden name="articleID" value='%{artcID}'/>
+				<s:hidden name="artcID" value='%{artcID}'/>
+				<s:textfield class="form-control" name="mitgliedsnummer" rows="1" placeholder="ID" ></s:textfield>							
 				<input class="btn btn-primary" type="submit" name="senden" value="Absenden">				
 			</form>	
 			

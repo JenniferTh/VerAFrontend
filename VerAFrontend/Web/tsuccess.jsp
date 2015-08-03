@@ -57,7 +57,7 @@
 		<s:textfield class="form-control" type="number" name = "maxT"></s:textfield>
 		<br><br>
 
-		<s:select label="Kategorie"
+		<s:select class="btn btn-default dropdown-toggle" label="Kategorie"
        	name="kategorie"
        	headerKey="-1" headerValue="Bitte Kategorie wählen"
        	list="#{'Judo': 'Judo', 'Handball':'Handball', 'Einrad':'Einrad', 'Fussball':'Fussball', 'Tennis':'Tennis'}"
@@ -71,12 +71,12 @@
 		<br><br>
 
 
-    	<label>Datum: </label>: <input type="date" name="datum" placeholder="03-08-2015">
+    	<label>Datum: <input class="form-control" type="date" name="datum" placeholder="03-08-2015"></label> 
   		
- 		<label>Uhrzeit: </label>
-		<s:textfield class="form-control" type="text" name = "uhrzeit" placeholder="14:30"></s:textfield>
+ 		<br><label>Uhrzeit: <s:textfield class="form-control" type="text" name = "uhrzeit" placeholder="14:30"></s:textfield></label>
 		
-		<br />
+		<br>
+
 		
 		<label>Info: </label>
 		<br />

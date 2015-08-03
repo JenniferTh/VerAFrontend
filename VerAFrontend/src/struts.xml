@@ -20,18 +20,22 @@
 		<action name="joinMeeting" class="action.JoinMeeting">
 			<result name="success">/successJoin.jsp</result>
 			<result name="error">/successJoin.jsp</result>
+			<result name="input">/index.jsp</result>
 		</action>
 		<action name="articleListing" class="action.ArticleListing">
 			<result name="success">/articleListing.jsp</result>
 			<result name="input">/articleListing.jsp</result>
 		</action>
 		<action name="showArticle" class="action.ArticleView">
+			<interceptor-ref name="chain"/>
+    		<interceptor-ref name="basicStack"/>
 			<result name="success">/beitragView.jsp</result>
 			<result name="input">/beitragView.jsp</result>
 		</action>
 		<action name="postComment" class="action.PostComment">
-			<result name="success">/index.jsp</result>
-			<result name="input">/index.jsp</result>
+			<interceptor-ref name="basicStack"/>
+	    	<result name="success" type="chain">showArticle</result>
+			<result name="input" type="chain">showArticle</result>
 		</action>
 		<action name="search" class="action.search">	
 			<result name="user">/searchResult.jsp</result>

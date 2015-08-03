@@ -14,6 +14,7 @@ public class JoinMeeting extends ActionSupport implements SessionAware {
 	public String execute(){
 		System.out.println(mitgliedsnummer);
 		System.out.println(meetingID);
+		System.out.println("Hallo");
 		if(meetingFinder.joinMetting(mitgliedsnummer, meetingID)){
 			return SUCCESS;
 		}

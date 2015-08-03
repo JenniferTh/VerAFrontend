@@ -82,8 +82,7 @@
 				%>		
 				<td width="100px">
 					<s:form action="showArticle">
-						ID:<s:property value="articleID"/>
-						<s:textfield class="form-control" name="artcID" rows="1" placeholder="ID"></s:textfield>						
+						<s:hidden name="artcID" value='%{articleID}'/>						
 						<s:submit class="btn btn-primary" value="Anzeigen" name="submit"/>
 					</s:form>
 				</td> 

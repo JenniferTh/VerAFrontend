@@ -12,9 +12,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public class bCreate extends ActionSupport implements SessionAware, ParameterAware{
 
 	private static final long serialVersionUID = 1L;
-	private String titel;
-	private String kategorie;
-	private String inhalt;
+	private String titel,kategorie,inhalt;
+	private int mitgliedsnummer;
 	private SessionMap<String,Object> session;
 	private Map<String, String[]> param = new HashMap<String, String[]>();
 	
@@ -22,11 +21,8 @@ public class bCreate extends ActionSupport implements SessionAware, ParameterAwa
 	public String execute(){
 		
 		BeitragDAO beitrag = new BeitragDAO();
-		System.out.println(getTitel());
 		this.kategorie = this.param.get("kategorie")[0];
-		System.out.println(kategorie);
-		System.out.println(getInhalt());
-		beitrag.createArticle(titel, kategorie, inhalt);
+		beitrag.createArticle(titel, kategorie, inhalt, mitgliedsnummer);
 		session.put("Titel", this.titel);
 		session.put("Kategorie", kategorie);
 		session.put("Text", this.inhalt);
@@ -88,6 +84,14 @@ public class bCreate extends ActionSupport implements SessionAware, ParameterAwa
 
 	public void setSession(SessionMap<String,Object> session) {
 		this.session = session;
+	}
+
+	public int getMitgliedsnummer() {
+		return mitgliedsnummer;
+	}
+
+	public void setMitgliedsnummer(int mitgliedsnummer) {
+		this.mitgliedsnummer = mitgliedsnummer;
 	}
 	
 }

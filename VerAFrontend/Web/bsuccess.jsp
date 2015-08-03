@@ -70,7 +70,10 @@
     		<textarea class="form-control" name="inhalt" rows="10" cols="50"></textarea>
      
 		<br />
-		
+		<p>ID:<s:property value="#session['userID']"/></p>
+		<s:textfield class="form-control" name="mitgliedsnummer" rows="1" placeholder="ID einfügen" ></s:textfield>							
+
+		<br>
 		<input class="btn btn-default" type="submit" class="btn btn-primary" name="senden" value="Absenden">
 		<input class="btn btn-default" type="submit" name="abbrechen" value="Abbrechen">
 		

@@ -16,30 +16,18 @@ import model.Treffen;
 public class tCreate extends ActionSupport implements SessionAware, ParameterAware {
 
 	private static final long serialVersionUID = 1L;
-	private String thema;
-	private String ort;
-	private String uhrzeit;
-	private int maxT;
+	private String thema,ort,uhrzeit,date, info;
+	private int maxT, mitgliedsnummer;
 	private String kategorie;
 	private Date datum;
-	private String date;
-	private String info;
 	private Treffen treffen;
 	private SessionMap<String,Object> session;
 	private Map<String, String[]> param = new HashMap<String, String[]>();
 	
 	public String execute(){
 		MeetingDAO meeting = new MeetingDAO();
-		System.out.println(getThema());
 		this.kategorie = this.param.get("kategorie")[0];
-		System.out.println(kategorie);
-		System.out.println(getOrt());
-		System.out.println(getUhrzeit());
-		System.out.println(getMaxT());
-		System.out.println(date);
 		date=date.substring(6, 10)+date.substring(2, 6)+date.substring(0, 2);
-		System.out.println(date);
-		System.out.println(getInfo());
 		meeting.createMeeting(thema, info, kategorie, ort, date, uhrzeit, maxT);
 		return SUCCESS;
 	}
@@ -119,6 +107,22 @@ public class tCreate extends ActionSupport implements SessionAware, ParameterAwa
 	public void setSession(Map<String, Object> arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getMitgliedsnummer() {
+		return mitgliedsnummer;
+	}
+
+	public void setMitgliedsnummer(int mitgliedsnummer) {
+		this.mitgliedsnummer = mitgliedsnummer;
+	}
+
+	public Treffen getTreffen() {
+		return treffen;
+	}
+
+	public void setTreffen(Treffen treffen) {
+		this.treffen = treffen;
 	}
 	
 }
